@@ -49,6 +49,10 @@ header{background:var(--navy);color:white;padding:0 24px;height:58px;display:fle
 .hdr-sub{font-size:.71rem;opacity:.6}
 .hdr-right{display:flex;align-items:center;gap:8px}
 .hdr-badge{background:var(--gold);color:white;font-size:.67rem;font-weight:800;padding:3px 10px;border-radius:20px;letter-spacing:.8px;text-transform:uppercase}
+.sync-badge{font-size:.67rem;font-weight:800;padding:3px 10px;border-radius:20px;letter-spacing:.7px;text-transform:uppercase;background:rgba(255,255,255,.12);color:rgba(255,255,255,.82);border:1px solid rgba(255,255,255,.18)}
+.sync-badge.online{background:#16a34a;color:white;border-color:#16a34a}
+.sync-badge.saving{background:var(--gold);color:white;border-color:var(--gold)}
+.sync-badge.error{background:var(--danger);color:white;border-color:var(--danger)}
 .hdr-plan-sel{background:rgba(255,255,255,.12);color:white;border:1px solid rgba(255,255,255,.25);padding:5px 10px;border-radius:8px;font-size:.8rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;outline:none}
 .hdr-btn{background:rgba(255,255,255,.12);color:white;border:1px solid rgba(255,255,255,.2);padding:5px 12px;border-radius:8px;font-size:.78rem;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background .15s}
 .hdr-btn:hover{background:rgba(255,255,255,.22)}
@@ -264,6 +268,7 @@ main{padding:14px 24px 60px;max-width:1100px;margin:0 auto;width:100%}
     </div>
     <div class="hdr-right">
       <select class="hdr-plan-sel" id="planSelector" onchange="switchPlan(this.value)" title="Velg semesterplan"></select>
+      <span class="sync-badge" id="syncStatus" title="Lagringsstatus">Lokal</span>
       <span class="hdr-badge" id="roleBadge">Lærer</span>
       <button class="hdr-btn" onclick="printPlan()">🖨️ Skriv ut</button>
       <button class="hdr-btn" id="logoutBtn" style="display:none" onclick="logout()">Logg ut</button>
@@ -450,11 +455,27 @@ main{padding:14px 24px 60px;max-width:1100px;margin:0 auto;width:100%}
 <!-- TOAST -->
 <div class="toast" id="toast"></div>
 
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore-compat.js"></script>
 <script>
 // ═══════════════════════════════════════════════════════
 //  DATA LAYER
 // ═══════════════════════════════════════════════════════
 const DEFAULT_PW = 'AVO2026';
+const STORAGE_KEY = 'semesteravo_data';
+
+// Firestore: fill these values from Firebase Console > Project settings > Your apps > Web app.
+// Until this is filled in, the page keeps using local browser storage.
+const FIREBASE_CONFIG = {
+  apiKey: 'AIzaSyDGpT-Wmfo8i2QCNLe2NZISET3CU8E_OUI',
+  authDomain: 'semesteravo.firebaseapp.com',
+  projectId: 'semesteravo',
+  storageBucket: 'semesteravo.firebasestorage.app',
+  messagingSenderId: '602404677409',
+  appId: '1:602404677409:web:73437325675d4a006d4060'
+};
+const FIRESTORE_COLLECTION = 'semesteravo';
+const FIRESTORE_DOCUMENT_ID = 'shared-data';
 
 // Default template week structure
 const TEMPLATE_MONTHS = [
@@ -543,11 +564,123 @@ function getAllWeeksSorted(plan) {
 }
 
 // STORAGE
+let cloudSync = {
+  enabled: false,
+  db: null,
+  docRef: null,
+  unsubscribe: null,
+  applyingRemote: false,
+  saveTimer: null,
+  lastJson: ''
+};
+
+function hasFirebaseConfig() {
+  return FIREBASE_CONFIG.apiKey &&
+    FIREBASE_CONFIG.authDomain &&
+    FIREBASE_CONFIG.projectId &&
+    FIREBASE_CONFIG.appId;
+}
+
+function setSyncStatus(text, state='') {
+  const el = document.getElementById('syncStatus');
+  if (!el) return;
+  el.textContent = text;
+  el.className = 'sync-badge' + (state ? ' ' + state : '');
+}
+
 function loadData() {
-  try { return JSON.parse(localStorage.getItem('semesteravo_data') || '{}'); }
+  try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); }
   catch(e) { return {}; }
 }
-function saveData(d) { localStorage.setItem('semesteravo_data', JSON.stringify(d)); }
+function saveData(d) {
+  const json = JSON.stringify(d);
+  localStorage.setItem(STORAGE_KEY, json);
+  cloudSync.lastJson = json;
+  if (cloudSync.enabled && !cloudSync.applyingRemote) queueCloudSave(d);
+}
+
+function queueCloudSave(d) {
+  clearTimeout(cloudSync.saveTimer);
+  setSyncStatus('Lagrer', 'saving');
+  cloudSync.saveTimer = setTimeout(async () => {
+    try {
+      await cloudSync.docRef.set({
+        data: d,
+        updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+      }, { merge: true });
+      setSyncStatus('Sky', 'online');
+    } catch (err) {
+      console.error('Firestore save failed:', err);
+      setSyncStatus('Feil', 'error');
+      showToast('Kunne ikke lagre til Firestore', 'error');
+    }
+  }, 350);
+}
+
+function refreshAppFromData() {
+  const app = document.getElementById('app');
+  if (!app || app.style.display === 'none') return;
+  renderPlanSelector();
+  renderViewer();
+  if (currentMode === 'admin') renderAdmin();
+  if (currentMode === 'vakt') renderVakt();
+  if (currentMode === 'settings') renderSettings();
+}
+
+function initCloudSync() {
+  if (!hasFirebaseConfig()) {
+    setSyncStatus('Lokal');
+    return;
+  }
+  if (!window.firebase || !firebase.firestore) {
+    setSyncStatus('Feil', 'error');
+    showToast('Firebase-biblioteket ble ikke lastet', 'error');
+    return;
+  }
+
+  try {
+    const app = firebase.apps.length ? firebase.app() : firebase.initializeApp(FIREBASE_CONFIG);
+    cloudSync.db = firebase.firestore(app);
+    cloudSync.docRef = cloudSync.db.collection(FIRESTORE_COLLECTION).doc(FIRESTORE_DOCUMENT_ID);
+    cloudSync.enabled = true;
+    setSyncStatus('Kobler', 'saving');
+
+    cloudSync.unsubscribe = cloudSync.docRef.onSnapshot(async snap => {
+      if (!snap.exists) {
+        await cloudSync.docRef.set({
+          data: getData(),
+          updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+        });
+        setSyncStatus('Sky', 'online');
+        return;
+      }
+
+      const remote = snap.data().data;
+      if (!remote || typeof remote !== 'object') return;
+      const remoteJson = JSON.stringify(remote);
+      if (remoteJson === cloudSync.lastJson) {
+        setSyncStatus('Sky', 'online');
+        return;
+      }
+
+      cloudSync.applyingRemote = true;
+      localStorage.setItem(STORAGE_KEY, remoteJson);
+      cloudSync.lastJson = remoteJson;
+      cloudSync.applyingRemote = false;
+      refreshAppFromData();
+      setSyncStatus('Sky', 'online');
+      showToast('Oppdatert fra Firestore', 'success');
+    }, err => {
+      console.error('Firestore listener failed:', err);
+      setSyncStatus('Feil', 'error');
+      showToast('Firestore-tilkobling feilet', 'error');
+    });
+  } catch (err) {
+    console.error('Firestore init failed:', err);
+    setSyncStatus('Feil', 'error');
+    showToast('Firebase-oppsett mangler eller er feil', 'error');
+  }
+}
 
 function getData() {
   let d = loadData();
@@ -1390,6 +1523,7 @@ function buildPlan2526() {
 //  INIT
 // ═══════════════════════════════════════════════════════
 getData(); // init storage
+initCloudSync(); // enable shared Firestore storage when Firebase config is filled in
 </script>
 </body>
 </html>
