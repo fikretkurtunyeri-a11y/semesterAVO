@@ -21,13 +21,17 @@
   --ito:#7c3aed; --ito-bg:#f5f0ff; --ito-b:#c4b5fd;
   --felles:var(--arendal-dark-blue); --felles-bg:#e8eef5; --felles-b:#a4c0d8;
   --danger:var(--arendal-red); --success:var(--arendal-green); --r:10px;
+  --shadow-sm:0 3px 12px rgba(0,56,121,.10);
+  --shadow-md:0 12px 32px rgba(0,23,49,.12);
+  --header-offset:58px; --app-top:96px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+body{font-family:'DM Sans',sans-serif;background:linear-gradient(180deg,#f7f9fc 0%,var(--bg) 260px);color:var(--text);min-height:100vh}
 
 /* ── LOCK SCREEN ── */
-#lockScreen{position:fixed;inset:0;background:var(--navy);display:flex;align-items:center;justify-content:center;z-index:9999;flex-direction:column}
-.lock-card{background:white;border-radius:20px;padding:44px 48px;width:370px;box-shadow:0 24px 80px rgba(0,0,0,.35);text-align:center}
+#lockScreen{position:fixed;inset:0;background:linear-gradient(145deg,#003879 0%,#001f45 58%,#34AFE0 150%);display:flex;align-items:center;justify-content:center;z-index:9999;flex-direction:column;padding:24px}
+#lockScreen:before{content:'';position:absolute;inset:auto -10% -18% -10%;height:42%;background:rgba(164,229,255,.16);border-radius:55% 55% 0 0;pointer-events:none}
+.lock-card{position:relative;background:rgba(255,255,255,.96);border:1px solid rgba(255,255,255,.6);border-radius:18px;padding:44px 48px;width:370px;box-shadow:0 24px 80px rgba(0,0,0,.35);text-align:center}
 .lock-logo{font-size:2.4rem;margin-bottom:6px}
 .lock-title{font-size:1.25rem;font-weight:800;color:var(--navy);margin-bottom:4px}
 .lock-sub{font-size:.82rem;color:var(--muted);margin-bottom:24px}
@@ -66,32 +70,23 @@ header{background:var(--navy);color:white;padding:0 24px;height:58px;display:fle
 .hdr-btn:hover{background:rgba(255,255,255,.22)}
 
 /* TABS (viewer vs admin) */
-.mode-tabs{display:flex;background:var(--navy-l);padding:0 24px;position:sticky;top:58px;z-index:150}
+.mode-tabs{display:flex;background:var(--navy-l);padding:0 24px;position:sticky;top:var(--header-offset);z-index:150}
 .mode-tab{padding:8px 18px;font-size:.8rem;font-weight:700;color:rgba(255,255,255,.55);cursor:pointer;border-bottom:3px solid transparent;transition:all .15s;letter-spacing:.3px}
 .mode-tab.active{color:white;border-color:var(--gold)}
 .mode-tab:hover:not(.active){color:rgba(255,255,255,.8)}
 
 /* ── VIEWER ── */
 #viewerPane{flex:1;display:flex;flex-direction:column}
-.viewer-sticky{position:sticky;top:58px;z-index:100;background:white;box-shadow:0 3px 12px rgba(0,56,121,.10)}
-.toolbar{background:white;border-bottom:none;padding:7px 20px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;row-gap:5px}
-@media(max-width:700px){.toolbar{padding:6px 12px;gap:6px} .this-week-btn{margin-left:0}}
+.viewer-sticky{position:sticky;top:var(--app-top);z-index:100;background:white;box-shadow:0 3px 12px rgba(0,56,121,.10)}
+.toolbar{background:white;border-bottom:none;padding:10px 20px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;row-gap:7px}
 .goto-uke{display:flex;align-items:center;gap:4px;color:var(--muted);font-size:.76rem;font-weight:600}
 .goto-uke input{width:46px;padding:4px 5px;border:1.5px solid var(--border);border-radius:6px;font-size:.79rem;font-family:'DM Sans',sans-serif;outline:none;text-align:center;color:var(--text)}
 .goto-uke input:focus{border-color:var(--navy)}
 .goto-uke button{padding:4px 8px;border-radius:6px;border:1.5px solid var(--border);background:white;color:var(--navy);font-size:.79rem;cursor:pointer;font-weight:700;transition:all .15s}
 .goto-uke button:hover{background:var(--navy);color:white;border-color:var(--navy)}
-.search-box{display:flex;align-items:center;background:var(--bg);border:1.5px solid var(--border);border-radius:7px;padding:5px 10px;gap:6px}
-.search-box input{border:none;background:none;outline:none;font-size:.81rem;width:150px;color:var(--text);font-family:'DM Sans',sans-serif}
-.filter-group{display:flex;gap:5px;flex-wrap:wrap}
-.fbtn{padding:5px 13px;border-radius:20px;border:1.5px solid var(--border);background:white;font-size:.79rem;font-weight:700;cursor:pointer;transition:all .15s;color:var(--muted);font-family:'DM Sans',sans-serif}
-.fbtn:hover{border-color:var(--navy);color:var(--navy)}
-.fbtn.act-alle{background:var(--navy);color:white;border-color:var(--navy)}
-.fbtn.act-no{background:var(--no);color:white;border-color:var(--no)}
-.fbtn.act-fov{background:var(--fov);color:white;border-color:var(--fov)}
-.fbtn.act-ito{background:var(--ito);color:white;border-color:var(--ito)}
-.fbtn.act-felles{background:var(--felles);color:white;border-color:var(--felles)}
-.this-week-btn{margin-left:auto;padding:5px 13px;border-radius:6px;border:none;background:var(--gold);color:var(--arendal-dark-blue);font-size:.76rem;font-weight:800;cursor:pointer;font-family:'DM Sans',sans-serif;transition:opacity .15s}
+.search-box{display:flex;align-items:center;background:#f8fafc;border:1.5px solid var(--border);border-radius:8px;padding:6px 11px;gap:6px;min-width:210px}
+.search-box input{border:none;background:none;outline:none;font-size:.84rem;width:180px;color:var(--text);font-family:'DM Sans',sans-serif}
+.this-week-btn{margin-left:auto;padding:6px 14px;border-radius:8px;border:none;background:var(--gold);color:var(--arendal-dark-blue);font-size:.78rem;font-weight:800;cursor:pointer;font-family:'DM Sans',sans-serif;transition:opacity .15s,transform .15s}
 .this-week-btn:hover{opacity:.85}
 .neste-nav{display:flex;align-items:center;gap:4px}
 .neste-label{font-size:.76rem;font-weight:700;color:var(--muted);white-space:nowrap}
@@ -108,8 +103,15 @@ header{background:var(--navy);color:white;padding:0 24px;height:58px;display:fle
 .ukes-cat-chip:hover{border-color:var(--navy)}
 .ukes-cat-chip input{width:12px;height:12px;cursor:pointer;accent-color:var(--navy)}
 .ukes-cat-chip.selected{border-color:var(--navy);background:#e8eef5}
-/* meeting type badge inside event tag */
-.mtbadge{display:inline-block;font-size:.68rem;font-weight:700;padding:1px 7px;border-radius:8px;background:rgba(0,0,0,.08);margin-right:5px;white-space:nowrap}
+/* meeting badges */
+.day-types{display:flex;gap:4px;flex-wrap:wrap;justify-content:flex-end}
+.day-type{display:inline-flex;align-items:center;min-height:20px;padding:2px 8px;border-radius:999px;background:#eef2f7;color:#4b5f7c;font-size:.66rem;font-weight:800;text-transform:none;letter-spacing:0;white-space:nowrap}
+.dept-badge{display:inline-flex;align-items:center;justify-content:center;min-width:42px;padding:2px 8px;border-radius:999px;font-size:.68rem;font-weight:900;line-height:1.35;margin-right:8px;vertical-align:baseline;white-space:nowrap}
+.dept-no{background:rgba(52,175,224,.16);color:#075985}
+.dept-fov{background:rgba(100,181,120,.18);color:#166534}
+.dept-ito{background:rgba(124,58,237,.14);color:#6d28d9}
+.dept-felles{background:rgba(0,56,121,.13);color:#003879}
+.dept-gen{background:#e5e7eb;color:#374151}
 .month-nav{display:flex;gap:3px;padding:4px 20px 5px;overflow-x:auto;scrollbar-width:none;background:#002d63;border-top:1px solid rgba(255,255,255,.08);justify-content:flex-start;flex-wrap:nowrap;min-height:0}
 .month-nav::-webkit-scrollbar{display:none}
 .mpill{flex:0 0 auto;padding:2px 10px;border-radius:20px;background:transparent;border:1px solid transparent;font-size:.69rem;font-weight:600;cursor:pointer;white-space:nowrap;color:rgba(255,255,255,.45);transition:all .15s;font-family:'DM Sans',sans-serif}
@@ -120,9 +122,9 @@ main{padding:14px 24px 60px;max-width:1100px;margin:0 auto;width:100%}
 .month-hdr{display:flex;align-items:center;gap:12px;margin-bottom:10px;padding-top:6px}
 .month-title{font-size:1.2rem;font-weight:800;color:var(--navy)}
 .month-line{flex:1;height:2px;background:linear-gradient(to right,var(--gold),transparent);border-radius:2px}
-.week-row{background:white;border:1.5px solid var(--border);border-radius:12px;margin-bottom:10px;overflow:hidden;transition:box-shadow .15s}
-.week-row:hover{box-shadow:0 3px 12px rgba(0,0,0,.08)}
-.week-row.this-week{border-color:var(--gold);background:#fffde7;box-shadow:0 0 0 2px rgba(200,151,58,.22)}
+.week-row{background:white;border:1.5px solid var(--border);border-radius:12px;margin-bottom:10px;overflow:hidden;transition:box-shadow .15s,transform .15s,border-color .15s}
+.week-row:hover{box-shadow:var(--shadow-sm);transform:translateY(-1px)}
+.week-row.this-week{border-color:var(--gold);background:#fffdf2;box-shadow:0 0 0 2px rgba(253,202,79,.32),var(--shadow-md)}
 .week-row.ferie-row{background:#f6f7f9;border-style:dashed;border-color:#c8d0dc}
 .week-row.hidden{display:none}
 .week-inner{display:grid;grid-template-columns:80px 1fr;align-items:stretch}
@@ -140,8 +142,9 @@ main{padding:14px 24px 60px;max-width:1100px;margin:0 auto;width:100%}
 .vakt-chip span{color:var(--text);font-weight:600}
 .meetings-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
 .day-col{display:flex;flex-direction:column;gap:5px}
-.day-label{font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.6px;color:var(--navy);opacity:.7;padding:2px 0;border-bottom:1.5px solid var(--border);margin-bottom:3px}
-.event-tag{border-radius:6px;padding:5px 9px;font-size:.79rem;line-height:1.45;border-left:3px solid transparent}
+.day-label{font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.6px;color:var(--navy);opacity:.85;padding:2px 0 5px;border-bottom:1.5px solid var(--border);margin-bottom:5px;display:flex;align-items:flex-start;justify-content:space-between;gap:8px;min-height:27px}
+.day-title{white-space:nowrap;line-height:1.8}
+.event-tag{border-radius:6px;padding:6px 9px;font-size:.8rem;line-height:1.45;border-left:3px solid transparent}
 .tag-no{background:var(--no-bg);border-color:var(--no);color:#1d4ed8}
 .tag-fov{background:var(--fov-bg);border-color:var(--fov);color:#15803d}
 .tag-ito{background:var(--ito-bg);border-color:var(--ito);color:#7e22ce}
@@ -151,8 +154,8 @@ main{padding:14px 24px 60px;max-width:1100px;margin:0 auto;width:100%}
 
 /* ── ADMIN PANE ── */
 #adminPane{display:none;flex:1}
-.admin-body{display:grid;grid-template-columns:340px 1fr;min-height:calc(100vh - 96px)}
-.sidebar{background:white;border-right:1px solid var(--border);display:flex;flex-direction:column;position:sticky;top:96px;height:calc(100vh - 96px);overflow:hidden}
+.admin-body{display:grid;grid-template-columns:340px 1fr;min-height:calc(100vh - var(--app-top))}
+.sidebar{background:white;border-right:1px solid var(--border);display:flex;flex-direction:column;position:sticky;top:var(--app-top);height:calc(100vh - var(--app-top));overflow:hidden}
 .sb-tabs{display:flex;border-bottom:1px solid var(--border)}
 .sb-tab{flex:1;padding:10px 4px;font-size:.76rem;font-weight:700;cursor:pointer;text-align:center;border-bottom:2px solid transparent;color:var(--muted);transition:all .15s;font-family:'DM Sans',sans-serif}
 .sb-tab.active{color:var(--navy);border-color:var(--navy)}
@@ -167,7 +170,7 @@ main{padding:14px 24px 60px;max-width:1100px;margin:0 auto;width:100%}
 .month-group-hdr{font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--muted);padding:10px 10px 4px}
 
 /* ADMIN EDITOR */
-.editor{padding:24px 32px;overflow-y:auto;height:calc(100vh - 96px)}
+.editor{padding:24px 32px;overflow-y:auto;height:calc(100vh - var(--app-top))}
 .ed-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;padding-bottom:14px;border-bottom:2px solid var(--border)}
 .ed-title{font-size:1rem;font-weight:800;color:var(--navy)}
 .ed-subtitle{font-size:.75rem;color:var(--muted);margin-top:2px}
@@ -244,6 +247,35 @@ main{padding:14px 24px 60px;max-width:1100px;margin:0 auto;width:100%}
 .toast.show{transform:translateY(0);opacity:1}
 .toast.success{background:#15803d}
 .toast.error{background:var(--danger)}
+
+@media(max-width:900px){
+  header{height:auto;min-height:58px;padding:10px 14px;gap:10px;align-items:flex-start;flex-wrap:wrap}
+  .hdr-right{margin-left:auto;flex-wrap:wrap;justify-content:flex-end}
+  .mode-tabs{padding:0 12px;overflow-x:auto}
+  .mode-tab{flex:0 0 auto;padding:9px 13px}
+  .toolbar{padding:10px 12px}
+  .search-box{flex:1 1 100%;min-width:0}
+  .search-box input{width:100%}
+  .neste-nav,.goto-uke{flex:1 1 auto}
+  .this-week-btn{margin-left:0}
+  main{padding:12px 12px 48px}
+  .meetings-grid{grid-template-columns:1fr}
+  .day-col{background:#f8fafc;border:1px solid var(--border);border-radius:8px;padding:8px}
+  .admin-body{display:block;min-height:auto}
+  .sidebar{position:relative;top:auto;height:auto;max-height:260px;border-right:none;border-bottom:1px solid var(--border)}
+  .editor{height:auto;padding:18px 14px}
+  .form-grid,.vakt-grid{grid-template-columns:1fr}
+}
+
+@media(max-width:560px){
+  .lock-card{width:min(370px,100%);padding:34px 24px}
+  .week-inner{grid-template-columns:64px 1fr}
+  .week-content{padding:12px}
+  .week-label{padding:10px 4px}
+  .week-num{font-size:1.2rem}
+  .month-nav{padding-left:12px;padding-right:12px}
+  .plan-card{align-items:flex-start;gap:12px;flex-direction:column}
+}
 
 /* PRINT */
 @media print{
@@ -366,7 +398,7 @@ main{padding:14px 24px 60px;max-width:1100px;margin:0 auto;width:100%}
       </div>
       <div id="vaktAdminTools" style="display:none" class="btn-grp">
         <button class="btn btn-gold" onclick="openVaktEditor()">✏️ Rediger lister</button>
-        <button class="btn btn-primary" onclick="redistributeVakt()">🔄 Fordel automatisk</button>
+        <button class="btn btn-primary" onclick="redistributeVakt()">🔄 Fordel fremover</button>
       </div>
     </div>
     <div id="vaktContent"></div>
@@ -473,7 +505,7 @@ main{padding:14px 24px 60px;max-width:1100px;margin:0 auto;width:100%}
     </div>
     <div style="margin-top:16px" class="btn-grp">
       <button class="btn btn-gold" onclick="saveVaktLists()">💾 Lagre</button>
-      <button class="btn btn-primary" onclick="saveAndRedistribute()">🔄 Lagre og fordel</button>
+      <button class="btn btn-primary" onclick="saveAndRedistribute()">🔄 Lagre og fordel fremover</button>
       <button class="btn btn-outline" onclick="closeModal('vaktModal')">Avbryt</button>
     </div>
   </div>
@@ -490,6 +522,7 @@ main{padding:14px 24px 60px;max-width:1100px;margin:0 auto;width:100%}
 // ═══════════════════════════════════════════════════════
 const DEFAULT_PW = 'AVO2026';
 const STORAGE_KEY = 'semesteravo_data';
+const SESSION_KEY = 'semesteravo_session';
 
 // Firestore: fill these values from Firebase Console > Project settings > Your apps > Web app.
 // Until this is filled in, the page keeps using local browser storage.
@@ -577,11 +610,13 @@ function makeBlankPlan(name, kjokkenPersons, trivselPersons) {
   return plan;
 }
 
-function distributeVakt(plan) {
-  const activeWeeks = getAllWeeksSorted(plan).filter(w => !plan.weeks[w].isFerie);
+function distributeVakt(plan, options = {}) {
+  const fromWeek = options.fromWeek ?? null;
+  const allActiveWeeks = getAllWeeksSorted(plan).filter(w => !plan.weeks[w].isFerie);
+  const activeWeeks = fromWeek === null ? allActiveWeeks : allActiveWeeks.filter(w => getPlanWeekOrderIndex(plan, w) >= getPlanWeekOrderIndex(plan, fromWeek));
   const k = plan.kjokkenPersons || [];
   const t = plan.trivselPersons || [];
-  if (!k.length && !t.length) return;
+  if ((!k.length && !t.length) || !activeWeeks.length) return;
 
   // Shuffle helpers for fair distribution
   // We want each person to get ~equal number of weeks
@@ -620,6 +655,12 @@ function getAllWeeksSorted(plan) {
   // Order: weeks 33-52 first, then 1-25
   const all = Object.keys(plan.weeks).map(Number);
   return [...all.filter(w=>w>=33).sort((a,b)=>a-b), ...all.filter(w=>w<33).sort((a,b)=>a-b)];
+}
+
+function getPlanWeekOrderIndex(plan, weekNum) {
+  const sorted = getAllWeeksSorted(plan);
+  const idx = sorted.indexOf(Number(weekNum));
+  return idx === -1 ? 0 : idx;
 }
 
 // STORAGE
@@ -679,9 +720,11 @@ function queueCloudSave(d) {
 function refreshAppFromData() {
   const app = document.getElementById('app');
   if (!app || app.style.display === 'none') return;
+  const editor = document.getElementById('editorPanel');
+  const isEditing = currentMode === 'admin' && editor?.contains(document.activeElement);
   renderPlanSelector();
-  renderViewer();
-  if (currentMode === 'admin') renderAdmin();
+  if (!isEditing) renderViewer();
+  if (currentMode === 'admin' && !isEditing) renderAdmin();
   if (currentMode === 'vakt') renderVakt();
   if (currentMode === 'settings') renderSettings();
 }
@@ -768,12 +811,16 @@ let currentMode = 'viewer';
 let currentFilter = 'alle';
 let currentWeekEdit = null;
 let sbCurrentTab = 'weeks';
+let _autoSaveTimer = null;
+let _autoSaveWeek = null;
+let _hasPendingWeekChanges = false;
 
 // ═══════════════════════════════════════════════════════
 //  AUTH
 // ═══════════════════════════════════════════════════════
 function enterAsTeacher() {
   isAdmin = false;
+  saveSession('teacher');
   startApp();
 }
 function showPwForm() {
@@ -792,6 +839,7 @@ function checkPw() {
   const val = document.getElementById('pwInput').value;
   if (val === d.adminPw) {
     isAdmin = true;
+    saveSession('admin');
     startApp();
   } else {
     const inp = document.getElementById('pwInput');
@@ -801,8 +849,35 @@ function checkPw() {
   }
 }
 function logout() {
+  flushPendingWeekSave();
   isAdmin = false;
-  location.reload();
+  sessionStorage.removeItem(SESSION_KEY);
+  localStorage.removeItem(SESSION_KEY);
+  currentMode = 'viewer';
+  document.getElementById('app').style.display='none';
+  document.getElementById('lockScreen').style.display='flex';
+  hidePwForm();
+}
+
+function saveSession(role) {
+  const payload = JSON.stringify({role, ts: Date.now()});
+  sessionStorage.setItem(SESSION_KEY, payload);
+  if (role === 'teacher') localStorage.setItem(SESSION_KEY, payload);
+  else localStorage.removeItem(SESSION_KEY);
+}
+
+function restoreSession() {
+  const raw = sessionStorage.getItem(SESSION_KEY) || localStorage.getItem(SESSION_KEY);
+  if (!raw) return;
+  try {
+    const session = JSON.parse(raw);
+    if (!session.role) return;
+    isAdmin = session.role === 'admin';
+    startApp();
+  } catch(e) {
+    sessionStorage.removeItem(SESSION_KEY);
+    localStorage.removeItem(SESSION_KEY);
+  }
 }
 
 function startApp() {
@@ -812,13 +887,19 @@ function startApp() {
   document.getElementById('roleBadge').textContent = isAdmin ? 'Admin' : 'Lærer';
   document.getElementById('logoutBtn').style.display = isAdmin ? '' : 'none';
   document.getElementById('modeTabs').style.display = isAdmin ? 'flex' : 'none';
-  // Adjust sticky offset: header=58px, mode-tabs≈38px when admin
-  const stickyTop = isAdmin ? '96px' : '58px';
-  const vs = document.getElementById('viewerSticky');
-  if (vs) vs.style.top = stickyTop;
+  updateStickyOffsets();
   renderPlanSelector();
   populateNesteSelect();
   renderViewer();
+}
+
+function updateStickyOffsets() {
+  const header = document.querySelector('header');
+  const tabs = document.getElementById('modeTabs');
+  const headerH = header?.offsetHeight || 58;
+  const tabsH = isAdmin && tabs?.style.display !== 'none' ? tabs.offsetHeight : 0;
+  document.documentElement.style.setProperty('--header-offset', headerH + 'px');
+  document.documentElement.style.setProperty('--app-top', (headerH + tabsH) + 'px');
 }
 
 // ═══════════════════════════════════════════════════════
@@ -836,6 +917,7 @@ function renderPlanSelector() {
   });
 }
 function switchPlan(name) {
+  flushPendingWeekSave();
   const d = getData();
   d.activePlan = name;
   saveData(d);
@@ -849,6 +931,7 @@ function switchPlan(name) {
 //  MODE SWITCHING
 // ═══════════════════════════════════════════════════════
 function switchMode(mode) {
+  flushPendingWeekSave();
   currentMode = mode;
   ['viewer','admin','vakt','settings'].forEach(m => {
     document.getElementById(m+'Pane').style.display = 'none';
@@ -857,6 +940,7 @@ function switchMode(mode) {
   const paneId = mode+'Pane';
   document.getElementById(paneId).style.display = 'block';
   document.getElementById('tab'+mode.charAt(0).toUpperCase()+mode.slice(1))?.classList.add('active');
+  updateStickyOffsets();
   if (mode==='admin') renderAdmin();
   if (mode==='vakt') renderVakt();
   if (mode==='settings') renderSettings();
@@ -1047,15 +1131,15 @@ function renderWeeks(plan) {
               ${ukeTxt}
               <div class="meetings-grid">
                 <div class="day-col">
-                  <div class="day-label">Man 14:15–15:30</div>
+                  ${renderDayLabel('Man 14:15–15:30', w.mandag||[])}
                   ${mondayEvents||'<span style="color:#b0bbc8;font-size:.75rem;font-style:italic">Ingen møter</span>'}
                 </div>
                 <div class="day-col">
-                  <div class="day-label">Ons 14:15–15:30</div>
+                  ${renderDayLabel('Ons 14:15–15:30', w.onsdag||[])}
                   ${wednesdayEvents||'<span style="color:#b0bbc8;font-size:.75rem;font-style:italic">Ingen møter</span>'}
                 </div>
                 <div class="day-col">
-                  <div class="day-label">Tor 13:15–15:30</div>
+                  ${renderDayLabel('Tor 13:15–15:30', w.torsdag||[])}
                   ${thursdayEvents||'<span style="color:#b0bbc8;font-size:.75rem;font-style:italic">Ingen møter</span>'}
                 </div>
               </div>
@@ -1077,13 +1161,21 @@ function buildVaktLine(w) {
   return `<div class="vakt-line">${parts}</div>`;
 }
 
+function renderDayLabel(label, events) {
+  const types = [...new Set((events||[]).map(e => (e.meetingType||'').trim()).filter(Boolean))];
+  const typeHtml = types.map(t => `<span class="day-type">${escHtml(t)}</span>`).join('');
+  return `<div class="day-label"><span class="day-title">${escHtml(label)}</span><span class="day-types">${typeHtml}</span></div>`;
+}
+
 function renderEventTags(events) {
   if (!events || !events.length) return '';
   return events.map(e => {
     const cls = e.dept ? 'tag-'+e.dept.toLowerCase() : 'tag-gen';
-    const mtBadge = e.meetingType ? `<span class="mtbadge">${escHtml(e.meetingType)}</span>` : '';
+    const dept = (e.dept || 'felles').toLowerCase();
+    const deptLabel = dept === 'no' ? 'NO' : dept === 'fov' ? 'FOV' : dept === 'ito' ? 'ITO' : dept === 'felles' ? 'Felles' : dept.toUpperCase();
+    const deptBadge = `<span class="dept-badge dept-${dept}">${escHtml(deptLabel)}</span>`;
     const desc = e.text ? escHtml(e.text) : '';
-    return `<div class="event-tag ${cls}">${mtBadge}${desc}</div>`;
+    return `<div class="event-tag ${cls}">${deptBadge}${desc}</div>`;
   }).join('');
 }
 
@@ -1147,18 +1239,21 @@ function filterWeeks() {
     const wNum = parseInt(row.dataset.week);
     const w = plan.weeks[wNum];
     if (!w) return;
-    if (w.isFerie) { row.classList.toggle('hidden', !!q); return; }
+    if (w.isFerie) { row.classList.toggle('hidden', !!q || currentFilter !== 'alle'); return; }
     let show = true;
+    const allEvents = [...(w.mandag||[]), ...(w.onsdag||[]), ...(w.torsdag||[])];
+    if (currentFilter !== 'alle') {
+      show = allEvents.some(e => (e.dept || 'felles').toLowerCase() === currentFilter);
+    }
     if (q) {
       const cats = getWeekCategories(w);
       const beskr = getWeekBeskrivelse(w);
-      const allEvents = [...(w.mandag||[]), ...(w.onsdag||[]), ...(w.torsdag||[])];
       const searchable = [
         beskr, w.kjøkkenvakt||'', w.trivselsvakt||'', w.fraværInfo||'',
         ...cats,
         ...allEvents.map(e=>(e.meetingType||'')+' '+(e.text||''))
       ].join(' ').toLowerCase();
-      show = searchable.includes(q);
+      show = show && searchable.includes(q);
     }
     row.classList.toggle('hidden', !show);
   });
@@ -1177,6 +1272,7 @@ function renderAdmin() {
 }
 
 function sbTab(tab, btn) {
+  flushPendingWeekSave();
   sbCurrentTab = tab;
   document.querySelectorAll('.sb-tab').forEach(t=>t.classList.remove('active'));
   btn.classList.add('active');
@@ -1210,6 +1306,7 @@ function renderWeekList(plan) {
 }
 
 function editWeek(wNum) {
+  if (currentWeekEdit !== null && currentWeekEdit !== wNum) flushPendingWeekSave();
   currentWeekEdit = wNum;
   tempEvents = {};  // reset temp events when switching weeks
   const plan = getActivePlan();
@@ -1320,13 +1417,20 @@ function getTempEvents(day) {
   }
   return tempEvents[day];
 }
-let _autoSaveTimer = null;
 function scheduleAutoSave() {
   clearTimeout(_autoSaveTimer);
+  _autoSaveWeek = currentWeekEdit;
+  _hasPendingWeekChanges = true;
   _autoSaveTimer = setTimeout(() => {
-    if (currentWeekEdit === null) return;
-    saveWeek(true);
+    if (currentWeekEdit === null || _autoSaveWeek !== currentWeekEdit) return;
+    saveWeek(true, _autoSaveWeek);
   }, 600);
+}
+
+function flushPendingWeekSave() {
+  if (!_hasPendingWeekChanges || currentWeekEdit === null) return false;
+  clearTimeout(_autoSaveTimer);
+  return saveWeek(true, currentWeekEdit, {quiet:true});
 }
 
 function updateEvent(day, idx, field, val) {
@@ -1348,11 +1452,11 @@ function removeEvent(day, idx) {
   scheduleAutoSave();
 }
 
-function saveWeek(auto = false) {
-  if (currentWeekEdit === null) return;
+function saveWeek(auto = false, weekNum = currentWeekEdit, options = {}) {
+  if (currentWeekEdit === null || weekNum !== currentWeekEdit) return false;
   const plan = getActivePlan();
-  const w = plan.weeks[currentWeekEdit];
-  if (!w) return;
+  const w = plan.weeks[weekNum];
+  if (!w) return false;
   const isFerie = document.getElementById('edIsFerie')?.checked;
   w.isFerie = isFerie;
   if (isFerie) {
@@ -1370,13 +1474,18 @@ function saveWeek(auto = false) {
   const d = getData();
   d.plans[d.activePlan] = plan;
   saveData(d);
+  _hasPendingWeekChanges = false;
+  _autoSaveWeek = null;
+  if (auto) {
+    setSyncStatus(cloudSync.enabled ? 'Sky' : 'Lokal', cloudSync.enabled ? 'online' : '');
+    if (!options.quiet) showToast('Lagret automatisk ✓', 'success');
+    return true;
+  }
   renderWeekList(plan);
   renderViewer();
-  if (auto) {
-    showToast('Lagret automatisk ✓', 'success');
-  } else {
-    showToast('Uke '+currentWeekEdit+' lagret ✓', 'success');
-  }
+  if (options.quiet) return true;
+  showToast('Uke '+weekNum+' lagret ✓', 'success');
+  return true;
 }
 
 // ═══════════════════════════════════════════════════════
@@ -1488,7 +1597,7 @@ function saveVaktLists() {
 }
 function saveAndRedistribute() {
   if (!window._tempPlan) return;
-  distributeVakt(window._tempPlan);
+  distributeVakt(window._tempPlan, {fromWeek:getCurrentWeekNumber()});
   const d = getData();
   d.plans[d.activePlan] = window._tempPlan;
   saveData(d);
@@ -1500,7 +1609,7 @@ function saveAndRedistribute() {
 }
 function redistributeVakt() {
   const plan = getActivePlan();
-  distributeVakt(plan);
+  distributeVakt(plan, {fromWeek:getCurrentWeekNumber()});
   const d = getData();
   d.plans[d.activePlan] = plan;
   saveData(d);
@@ -1725,6 +1834,9 @@ function buildPlan2526() {
 // ═══════════════════════════════════════════════════════
 getData(); // init storage
 initCloudSync(); // enable shared Firestore storage when Firebase config is filled in
+window.addEventListener('beforeunload', flushPendingWeekSave);
+window.addEventListener('resize', updateStickyOffsets);
+restoreSession();
 </script>
 </body>
 </html>
