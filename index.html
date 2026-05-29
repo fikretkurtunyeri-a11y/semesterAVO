@@ -60,7 +60,8 @@ header{background:var(--navy);color:white;padding:0 24px;height:58px;display:fle
 .sync-badge.online{background:#16a34a;color:white;border-color:#16a34a}
 .sync-badge.saving{background:var(--gold);color:white;border-color:var(--gold)}
 .sync-badge.error{background:var(--danger);color:white;border-color:var(--danger)}
-.hdr-plan-sel{background:rgba(255,255,255,.12);color:white;border:1px solid rgba(255,255,255,.25);padding:5px 10px;border-radius:8px;font-size:.8rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;outline:none}
+.hdr-plan-sel{background:var(--arendal-dark-blue);color:white;border:1.5px solid rgba(255,255,255,.35);padding:5px 10px;border-radius:8px;font-size:.8rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;outline:none}
+.hdr-plan-sel option{background:#003879;color:white}
 .hdr-btn{background:rgba(255,255,255,.12);color:white;border:1px solid rgba(255,255,255,.2);padding:5px 12px;border-radius:8px;font-size:.78rem;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background .15s}
 .hdr-btn:hover{background:rgba(255,255,255,.22)}
 
@@ -72,15 +73,16 @@ header{background:var(--navy);color:white;padding:0 24px;height:58px;display:fle
 
 /* ── VIEWER ── */
 #viewerPane{flex:1;display:flex;flex-direction:column}
-.viewer-sticky{position:sticky;top:58px;z-index:100;background:white;box-shadow:0 2px 8px rgba(0,0,0,.06)}
-.toolbar{background:white;border-bottom:1px solid var(--border);padding:10px 24px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-.goto-uke{display:flex;align-items:center;gap:5px;color:var(--muted);font-size:.79rem;font-weight:600}
-.goto-uke input{width:52px;padding:5px 6px;border:1.5px solid var(--border);border-radius:7px;font-size:.82rem;font-family:'DM Sans',sans-serif;outline:none;text-align:center;color:var(--text)}
-.goto-uke input:focus{border-color:var(--gold)}
-.goto-uke button{padding:5px 9px;border-radius:7px;border:1.5px solid var(--border);background:white;color:var(--navy);font-size:.82rem;cursor:pointer;font-weight:700;transition:all .15s}
+.viewer-sticky{position:sticky;top:58px;z-index:100;background:white;box-shadow:0 3px 12px rgba(0,56,121,.10)}
+.toolbar{background:white;border-bottom:none;padding:7px 20px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;row-gap:5px}
+@media(max-width:700px){.toolbar{padding:6px 12px;gap:6px} .this-week-btn{margin-left:0}}
+.goto-uke{display:flex;align-items:center;gap:4px;color:var(--muted);font-size:.76rem;font-weight:600}
+.goto-uke input{width:46px;padding:4px 5px;border:1.5px solid var(--border);border-radius:6px;font-size:.79rem;font-family:'DM Sans',sans-serif;outline:none;text-align:center;color:var(--text)}
+.goto-uke input:focus{border-color:var(--navy)}
+.goto-uke button{padding:4px 8px;border-radius:6px;border:1.5px solid var(--border);background:white;color:var(--navy);font-size:.79rem;cursor:pointer;font-weight:700;transition:all .15s}
 .goto-uke button:hover{background:var(--navy);color:white;border-color:var(--navy)}
-.search-box{display:flex;align-items:center;background:var(--bg);border:1.5px solid var(--border);border-radius:8px;padding:6px 12px;gap:8px}
-.search-box input{border:none;background:none;outline:none;font-size:.85rem;width:160px;color:var(--text);font-family:'DM Sans',sans-serif}
+.search-box{display:flex;align-items:center;background:var(--bg);border:1.5px solid var(--border);border-radius:7px;padding:5px 10px;gap:6px}
+.search-box input{border:none;background:none;outline:none;font-size:.81rem;width:150px;color:var(--text);font-family:'DM Sans',sans-serif}
 .filter-group{display:flex;gap:5px;flex-wrap:wrap}
 .fbtn{padding:5px 13px;border-radius:20px;border:1.5px solid var(--border);background:white;font-size:.79rem;font-weight:700;cursor:pointer;transition:all .15s;color:var(--muted);font-family:'DM Sans',sans-serif}
 .fbtn:hover{border-color:var(--navy);color:var(--navy)}
@@ -89,13 +91,13 @@ header{background:var(--navy);color:white;padding:0 24px;height:58px;display:fle
 .fbtn.act-fov{background:var(--fov);color:white;border-color:var(--fov)}
 .fbtn.act-ito{background:var(--ito);color:white;border-color:var(--ito)}
 .fbtn.act-felles{background:var(--felles);color:white;border-color:var(--felles)}
-.this-week-btn{margin-left:auto;padding:6px 15px;border-radius:8px;border:none;background:var(--gold);color:white;font-size:.79rem;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;transition:opacity .15s}
+.this-week-btn{margin-left:auto;padding:5px 13px;border-radius:6px;border:none;background:var(--gold);color:var(--arendal-dark-blue);font-size:.76rem;font-weight:800;cursor:pointer;font-family:'DM Sans',sans-serif;transition:opacity .15s}
 .this-week-btn:hover{opacity:.85}
-.neste-nav{display:flex;align-items:center;gap:5px}
-.neste-label{font-size:.79rem;font-weight:700;color:var(--muted);white-space:nowrap}
-.neste-sel{padding:5px 8px;border:1.5px solid var(--border);border-radius:7px;font-size:.8rem;font-family:'DM Sans',sans-serif;outline:none;color:var(--text);background:white;cursor:pointer}
+.neste-nav{display:flex;align-items:center;gap:4px}
+.neste-label{font-size:.76rem;font-weight:700;color:var(--muted);white-space:nowrap}
+.neste-sel{padding:4px 7px;border:1.5px solid var(--border);border-radius:6px;font-size:.77rem;font-family:'DM Sans',sans-serif;outline:none;color:var(--text);background:white;cursor:pointer;max-width:160px}
 .neste-sel:focus{border-color:var(--navy)}
-.neste-btn{padding:5px 11px;border-radius:7px;border:1.5px solid var(--navy);background:var(--navy);color:white;font-size:.85rem;cursor:pointer;font-weight:700;transition:all .15s}
+.neste-btn{padding:4px 10px;border-radius:6px;border:1.5px solid var(--navy);background:var(--navy);color:white;font-size:.8rem;cursor:pointer;font-weight:700;transition:all .15s}
 .neste-btn:hover{background:var(--navy-l);border-color:var(--navy-l)}
 /* Ukesaktuelt badges */
 .ukes-badge{display:inline-block;padding:2px 8px;border-radius:12px;font-size:.68rem;font-weight:700;margin-right:4px;margin-bottom:2px;border:1px solid transparent;line-height:1.6}
@@ -108,16 +110,17 @@ header{background:var(--navy);color:white;padding:0 24px;height:58px;display:fle
 .ukes-cat-chip.selected{border-color:var(--navy);background:#e8eef5}
 /* meeting type badge inside event tag */
 .mtbadge{display:inline-block;font-size:.68rem;font-weight:700;padding:1px 7px;border-radius:8px;background:rgba(0,0,0,.08);margin-right:5px;white-space:nowrap}
-.month-nav{display:flex;gap:5px;padding:8px 24px;overflow-x:auto;scrollbar-width:none;background:white;border-top:1px solid var(--border)}
+.month-nav{display:flex;gap:3px;padding:4px 20px 5px;overflow-x:auto;scrollbar-width:none;background:#002d63;border-top:1px solid rgba(255,255,255,.08);justify-content:flex-start;flex-wrap:nowrap;min-height:0}
 .month-nav::-webkit-scrollbar{display:none}
-.mpill{padding:3px 13px;border-radius:20px;background:white;border:1.5px solid var(--border);font-size:.75rem;font-weight:700;cursor:pointer;white-space:nowrap;color:var(--muted);transition:all .15s;font-family:'DM Sans',sans-serif}
-.mpill:hover,.mpill.active{background:var(--navy);color:white;border-color:var(--navy)}
+.mpill{flex:0 0 auto;padding:2px 10px;border-radius:20px;background:transparent;border:1px solid transparent;font-size:.69rem;font-weight:600;cursor:pointer;white-space:nowrap;color:rgba(255,255,255,.45);transition:all .15s;font-family:'DM Sans',sans-serif}
+.mpill:hover{color:rgba(255,255,255,.85);background:rgba(255,255,255,.08)}
+.mpill.active{background:var(--arendal-yellow);color:#002d63;border-color:transparent;font-weight:800}
 main{padding:14px 24px 60px;max-width:1100px;margin:0 auto;width:100%}
 .month-section{margin-bottom:26px}
 .month-hdr{display:flex;align-items:center;gap:12px;margin-bottom:10px;padding-top:6px}
 .month-title{font-size:1.2rem;font-weight:800;color:var(--navy)}
 .month-line{flex:1;height:2px;background:linear-gradient(to right,var(--gold),transparent);border-radius:2px}
-.week-row{background:white;border:1.5px solid var(--border);border-radius:12px;margin-bottom:8px;overflow:hidden;transition:box-shadow .15s}
+.week-row{background:white;border:1.5px solid var(--border);border-radius:12px;margin-bottom:10px;overflow:hidden;transition:box-shadow .15s}
 .week-row:hover{box-shadow:0 3px 12px rgba(0,0,0,.08)}
 .week-row.this-week{border-color:var(--gold);background:#fffde7;box-shadow:0 0 0 2px rgba(200,151,58,.22)}
 .week-row.ferie-row{background:#f6f7f9;border-style:dashed;border-color:#c8d0dc}
@@ -127,18 +130,18 @@ main{padding:14px 24px 60px;max-width:1100px;margin:0 auto;width:100%}
 .this-week .week-label{background:var(--gold)}
 .week-num{font-size:1.4rem;font-weight:800;line-height:1}
 .week-badge{font-size:.56rem;background:rgba(255,255,255,.22);padding:2px 6px;border-radius:10px;letter-spacing:.5px;text-transform:uppercase}
-.week-content{padding:10px 14px;display:flex;flex-direction:column;gap:6px}
-.ferie-inner{padding:14px 20px;display:flex;align-items:center;gap:12px}
-.ferie-text{font-weight:700;color:var(--muted);font-size:.86rem;letter-spacing:.8px;text-transform:uppercase}
-.ukesaktuelt{font-size:.78rem;color:#44475a;background:#f8f9fb;border-radius:6px;padding:5px 10px;border-left:3px solid var(--gold);line-height:1.5}
-.ukesaktuelt strong{color:var(--navy);display:block;font-size:.67rem;text-transform:uppercase;letter-spacing:.5px;margin-bottom:2px}
-.vakt-line{font-size:.74rem;color:var(--muted);display:flex;gap:10px;flex-wrap:wrap}
-.vakt-chip{background:var(--bg);border-radius:6px;padding:3px 8px;display:flex;gap:5px;align-items:center}
+.week-content{padding:13px 18px;display:flex;flex-direction:column;gap:8px}
+.ferie-inner{padding:16px 22px;display:flex;align-items:center;gap:12px}
+.ferie-text{font-weight:700;color:var(--muted);font-size:.88rem;letter-spacing:.8px;text-transform:uppercase}
+.ukesaktuelt{font-size:.81rem;color:#44475a;background:#f8f9fb;border-radius:6px;padding:6px 11px;border-left:3px solid var(--gold);line-height:1.55}
+.ukesaktuelt strong{color:var(--navy);display:block;font-size:.68rem;text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px}
+.vakt-line{font-size:.78rem;color:var(--muted);display:flex;gap:10px;flex-wrap:wrap}
+.vakt-chip{background:var(--bg);border-radius:6px;padding:3px 9px;display:flex;gap:5px;align-items:center}
 .vakt-chip span{color:var(--text);font-weight:600}
-.meetings-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.day-col{display:flex;flex-direction:column;gap:4px}
-.day-label{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:var(--muted);padding:2px 0;border-bottom:1px solid var(--border);margin-bottom:2px}
-.event-tag{border-radius:6px;padding:4px 8px;font-size:.76rem;line-height:1.4;border-left:3px solid transparent}
+.meetings-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.day-col{display:flex;flex-direction:column;gap:5px}
+.day-label{font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.6px;color:var(--navy);opacity:.7;padding:2px 0;border-bottom:1.5px solid var(--border);margin-bottom:3px}
+.event-tag{border-radius:6px;padding:5px 9px;font-size:.79rem;line-height:1.45;border-left:3px solid transparent}
 .tag-no{background:var(--no-bg);border-color:var(--no);color:#1d4ed8}
 .tag-fov{background:var(--fov-bg);border-color:var(--fov);color:#15803d}
 .tag-ito{background:var(--ito-bg);border-color:var(--ito);color:#7e22ce}
@@ -316,13 +319,13 @@ main{padding:14px 24px 60px;max-width:1100px;margin:0 auto;width:100%}
         </div>
         <div class="neste-nav">
           <span class="neste-label">Neste:</span>
-          <select id="nesteKategori" class="neste-sel">
-            <option value="">– velg –</option>
+          <select id="nesteKategori" class="neste-sel" onchange="_nesteLastWeek=null;_nesteLastKategori=null">
+            <option value="">Velg kategori</option>
           </select>
           <button class="neste-btn" onclick="gotoNesteKategori()">→</button>
         </div>
         <div class="goto-uke">
-          <span>Uke</span>
+          <span>Gå til uke:</span>
           <input type="number" id="gotoWeekInput" min="1" max="52" placeholder="nr" onkeydown="if(event.key==='Enter')gotoWeek()">
           <button onclick="gotoWeek()">↵</button>
         </div>
@@ -521,7 +524,7 @@ const DEFAULT_FERIER = {40:'HØSTFERIE', 52:'JULEFERIE', 1:'JULEFERIE', 8:'VINTE
 // ─── UKESAKTUELT CATEGORIES ───────────────────────────────────────────────────
 const UKESAKTUELT_CATEGORIES = [
   'Planleggingsdag','Tentamen','Pilotering','Muntlig prøve','Prøver',
-  'Frist / påmelding','Arrangement for deltakere','DKS','Besøk','Samling','Ledersamling'
+  'Frist / påmelding','Arrangement for deltakere','DKS','Besøk','Samling','Ledersamling','Feiring'
 ];
 const CATEGORY_COLORS = {
   'Planleggingsdag':      {bg:'#dbeafe',color:'#1d4ed8',border:'#93c5fd'},
@@ -535,6 +538,7 @@ const CATEGORY_COLORS = {
   'Besøk':                {bg:'#fef3c7',color:'#92400e',border:'#fcd34d'},
   'Samling':              {bg:'#dbeafe',color:'#1e40af',border:'#60a5fa'},
   'Ledersamling':         {bg:'#dcfce7',color:'#14532d',border:'#4ade80'},
+  'Feiring':              {bg:'#fff0f5',color:'#be185d',border:'#f9a8d4'},
 };
 
 // ─── MØTETYPE OPTIONS PER DAY ──────────────────────────────────────────────────
@@ -893,20 +897,42 @@ function renderCategoryBadges(categories) {
   }).join('');
 }
 
+let _nesteLastWeek = null;
+let _nesteLastKategori = null;
+
+function weekMatchesKategori(w, kategori) {
+  // Match against new category array
+  if (getWeekCategories(w).includes(kategori)) return true;
+  // Fallback: match against old string ukesaktuelt (case-insensitive keyword)
+  const beskr = getWeekBeskrivelse(w).toLowerCase();
+  return beskr.includes(kategori.toLowerCase());
+}
+
 function gotoNesteKategori() {
   const kategori = document.getElementById('nesteKategori').value;
   if (!kategori) { showToast('Velg en kategori først', 'error'); return; }
   const plan = getActivePlan();
   if (!plan) return;
-  const thisWeek = getCurrentWeekNumber();
   const sortedWeeks = getAllWeeksSorted(plan);
-  let currentIdx = sortedWeeks.indexOf(thisWeek);
-  if (currentIdx === -1) currentIdx = -1;
-  for (let i = currentIdx + 1; i < sortedWeeks.length; i++) {
+
+  // If same category as last search, continue from last found; otherwise start from current week
+  let startIdx;
+  if (kategori === _nesteLastKategori && _nesteLastWeek !== null) {
+    startIdx = sortedWeeks.indexOf(_nesteLastWeek) + 1;
+  } else {
+    const thisWeek = getCurrentWeekNumber();
+    startIdx = sortedWeeks.indexOf(thisWeek);
+    if (startIdx === -1) startIdx = 0;
+    else startIdx += 1;
+  }
+
+  for (let i = startIdx; i < sortedWeeks.length; i++) {
     const wNum = sortedWeeks[i];
     const w = plan.weeks[wNum];
     if (!w || w.isFerie) continue;
-    if (getWeekCategories(w).includes(kategori)) {
+    if (weekMatchesKategori(w, kategori)) {
+      _nesteLastWeek = wNum;
+      _nesteLastKategori = kategori;
       const el = document.getElementById('week-' + wNum);
       if (el) {
         el.scrollIntoView({behavior:'smooth', block:'center'});
@@ -917,13 +943,32 @@ function gotoNesteKategori() {
       return;
     }
   }
-  showToast('Ingen kommende «' + kategori + '» funnet', 'error');
+  // Wrap around from beginning if nothing found forward
+  for (let i = 0; i < startIdx; i++) {
+    const wNum = sortedWeeks[i];
+    const w = plan.weeks[wNum];
+    if (!w || w.isFerie) continue;
+    if (weekMatchesKategori(w, kategori)) {
+      _nesteLastWeek = wNum;
+      _nesteLastKategori = kategori;
+      const el = document.getElementById('week-' + wNum);
+      if (el) {
+        el.scrollIntoView({behavior:'smooth', block:'center'});
+        el.style.outline = '3px solid var(--gold)';
+        el.style.outlineOffset = '3px';
+        setTimeout(() => { el.style.outline = ''; el.style.outlineOffset = ''; }, 1800);
+      }
+      showToast('Siste treff — begynte fra starten', '');
+      return;
+    }
+  }
+  showToast('Ingen treff for «' + kategori + '»', 'error');
 }
 
 function populateNesteSelect() {
   const sel = document.getElementById('nesteKategori');
   if (!sel) return;
-  sel.innerHTML = '<option value="">– velg –</option>';
+  sel.innerHTML = '<option value="">Velg kategori</option>';
   UKESAKTUELT_CATEGORIES.forEach(cat => {
     const opt = document.createElement('option');
     opt.value = cat; opt.textContent = cat;
@@ -1003,15 +1048,15 @@ function renderWeeks(plan) {
               <div class="meetings-grid">
                 <div class="day-col">
                   <div class="day-label">Man 14:15–15:30</div>
-                  ${mondayEvents||'<span style="color:#cbd5e1;font-size:.73rem;font-style:italic">Ingen møter</span>'}
+                  ${mondayEvents||'<span style="color:#b0bbc8;font-size:.75rem;font-style:italic">Ingen møter</span>'}
                 </div>
                 <div class="day-col">
                   <div class="day-label">Ons 14:15–15:30</div>
-                  ${wednesdayEvents||'<span style="color:#cbd5e1;font-size:.73rem;font-style:italic">Ingen møter</span>'}
+                  ${wednesdayEvents||'<span style="color:#b0bbc8;font-size:.75rem;font-style:italic">Ingen møter</span>'}
                 </div>
                 <div class="day-col">
                   <div class="day-label">Tor 13:15–15:30</div>
-                  ${thursdayEvents||'<span style="color:#cbd5e1;font-size:.73rem;font-style:italic">Ingen møter</span>'}
+                  ${thursdayEvents||'<span style="color:#b0bbc8;font-size:.75rem;font-style:italic">Ingen møter</span>'}
                 </div>
               </div>
             </div>
@@ -1180,19 +1225,16 @@ function editWeek(wNum) {
     <div class="ed-hdr">
       <div>
         <div class="ed-title">Uke ${wNum} · ${monthName}</div>
-        <div class="ed-subtitle">${w.isFerie ? '🏖️ Ferieuke' : 'Rediger innhold'}</div>
-      </div>
-      <div class="btn-grp">
-        <button class="btn btn-gold btn-sm" onclick="saveWeek()">💾 Lagre</button>
+        <div class="ed-subtitle">${w.isFerie ? '🏖️ Ferieuke' : 'Endringer lagres automatisk'}</div>
       </div>
     </div>
 
     <div class="ferie-toggle">
-      <label class="toggle-wrap"><input type="checkbox" id="edIsFerie" ${w.isFerie?'checked':''} onchange="toggleFerieFields()"><span class="toggle-slider"></span></label>
+      <label class="toggle-wrap"><input type="checkbox" id="edIsFerie" ${w.isFerie?'checked':''} onchange="toggleFerieFields();scheduleAutoSave()"><span class="toggle-slider"></span></label>
       <span class="toggle-label">Ferieuke</span>
     </div>
     <div id="ferieNameField" style="${w.isFerie?'':'display:none'}">
-      <div class="field"><label>Ferienavn</label><input id="edFerieNavn" value="${escAttr(w.ferieNavn||'')}"></div>
+      <div class="field"><label>Ferienavn</label><input id="edFerieNavn" value="${escAttr(w.ferieNavn||'')}" oninput="scheduleAutoSave()"></div>
     </div>
 
     <div id="normalFields" style="${w.isFerie?'display:none':''}">
@@ -1203,22 +1245,22 @@ function editWeek(wNum) {
             const checked = getWeekCategories(w).includes(cat);
             const c = CATEGORY_COLORS[cat]||{};
             return `<label class="ukes-cat-chip${checked?' selected':''}" id="chip-${escAttr(cat)}">
-              <input type="checkbox" class="ukes-cat-check" value="${escAttr(cat)}" ${checked?'checked':''} onchange="this.closest('label').classList.toggle('selected',this.checked)">
+              <input type="checkbox" class="ukes-cat-check" value="${escAttr(cat)}" ${checked?'checked':''} onchange="this.closest('label').classList.toggle('selected',this.checked);scheduleAutoSave()">
               ${escHtml(cat)}
             </label>`;
           }).join('')}
         </div>
       </div>
-      <div class="field"><label>Ukesaktuelt beskrivelse (valgfritt)</label><textarea id="edUkesaktuelt" rows="2" placeholder="Kort beskrivelse, frister, info…">${escAttr(getWeekBeskrivelse(w))}</textarea></div>
+      <div class="field"><label>Ukesaktuelt beskrivelse (valgfritt)</label><textarea id="edUkesaktuelt" rows="2" placeholder="Kort beskrivelse, frister, info…" oninput="scheduleAutoSave()">${escAttr(getWeekBeskrivelse(w))}</textarea></div>
       <div class="form-grid">
-        <div class="field"><label>🍳 Kjøkkenvakt</label><input id="edKjokken" value="${escAttr(w.kjøkkenvakt||'')}"></div>
-        <div class="field"><label>🎉 Trivselsvakt</label><input id="edTrivsel" value="${escAttr(w.trivselsvakt||'')}"></div>
+        <div class="field"><label>🍳 Kjøkkenvakt</label><input id="edKjokken" value="${escAttr(w.kjøkkenvakt||'')}" oninput="scheduleAutoSave()"></div>
+        <div class="field"><label>🎉 Trivselsvakt</label><input id="edTrivsel" value="${escAttr(w.trivselsvakt||'')}" oninput="scheduleAutoSave()"></div>
       </div>
-      <div class="field"><label>📌 Fravær / annen info</label><input id="edFravær" value="${escAttr(w.fraværInfo||'')}"></div>
+      <div class="field"><label>📌 Fravær / annen info</label><input id="edFravær" value="${escAttr(w.fraværInfo||'')}" oninput="scheduleAutoSave()"></div>
 
       <div class="section-divider"></div>
       <div class="section-label">Mandag 14:15–15:30</div>
-      <div id="mondayEvents">${renderEventEditor(w.mandag||[], 'mandag')}</div>
+      <div id="mandagEvents">${renderEventEditor(w.mandag||[], 'mandag')}</div>
       <button class="add-row-btn" onclick="addEvent('mandag')">+ Legg til</button>
 
       <div class="section-divider"></div>
@@ -1232,9 +1274,6 @@ function editWeek(wNum) {
       <button class="add-row-btn" onclick="addEvent('torsdag')">+ Legg til</button>
     </div>
 
-    <div style="margin-top:24px" class="btn-grp">
-      <button class="btn btn-gold" onclick="saveWeek()">💾 Lagre uke ${wNum}</button>
-    </div>
   `;
 }
 
@@ -1281,46 +1320,63 @@ function getTempEvents(day) {
   }
   return tempEvents[day];
 }
+let _autoSaveTimer = null;
+function scheduleAutoSave() {
+  clearTimeout(_autoSaveTimer);
+  _autoSaveTimer = setTimeout(() => {
+    if (currentWeekEdit === null) return;
+    saveWeek(true);
+  }, 600);
+}
+
 function updateEvent(day, idx, field, val) {
   getTempEvents(day)[idx][field] = val;
+  scheduleAutoSave();
 }
 function addEvent(day) {
   const events = getTempEvents(day);
   events.push({text:'', dept:'felles', meetingType: MEETINGTYPE_DEFAULT[day] || ''});
   const container = document.getElementById(day+'Events');
   container.innerHTML = renderEventEditor(events, day);
+  scheduleAutoSave();
 }
 function removeEvent(day, idx) {
   const events = getTempEvents(day);
   events.splice(idx, 1);
   const container = document.getElementById(day+'Events');
   container.innerHTML = renderEventEditor(events, day);
+  scheduleAutoSave();
 }
 
-function saveWeek() {
+function saveWeek(auto = false) {
+  if (currentWeekEdit === null) return;
   const plan = getActivePlan();
   const w = plan.weeks[currentWeekEdit];
-  const isFerie = document.getElementById('edIsFerie').checked;
+  if (!w) return;
+  const isFerie = document.getElementById('edIsFerie')?.checked;
   w.isFerie = isFerie;
   if (isFerie) {
-    w.ferieNavn = document.getElementById('edFerieNavn').value;
+    w.ferieNavn = document.getElementById('edFerieNavn')?.value || '';
   } else {
     const selCats = Array.from(document.querySelectorAll('.ukes-cat-check:checked')).map(cb => cb.value);
-    w.ukesaktuelt = {categories: selCats, beskrivelse: document.getElementById('edUkesaktuelt').value};
-    w.kjøkkenvakt = document.getElementById('edKjokken').value;
-    w.trivselsvakt = document.getElementById('edTrivsel').value;
-    w.fraværInfo = document.getElementById('edFravær').value;
+    w.ukesaktuelt = {categories: selCats, beskrivelse: document.getElementById('edUkesaktuelt')?.value || ''};
+    w.kjøkkenvakt = document.getElementById('edKjokken')?.value || '';
+    w.trivselsvakt = document.getElementById('edTrivsel')?.value || '';
+    w.fraværInfo = document.getElementById('edFravær')?.value || '';
     w.mandag = getTempEvents('mandag');
     w.onsdag = getTempEvents('onsdag');
     w.torsdag = getTempEvents('torsdag');
   }
-  tempEvents = {};
   const d = getData();
   d.plans[d.activePlan] = plan;
   saveData(d);
   renderWeekList(plan);
   renderViewer();
-  showToast('Uke '+currentWeekEdit+' lagret ✓', 'success');
+  if (auto) {
+    showToast('Lagret automatisk ✓', 'success');
+  } else {
+    showToast('Uke '+currentWeekEdit+' lagret ✓', 'success');
+  }
 }
 
 // ═══════════════════════════════════════════════════════
