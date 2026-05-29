@@ -7,13 +7,20 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap');
 :root {
-  --navy:#1B2B4B; --navy-l:#253a60; --gold:#C8973A; --gold-l:#f5e6c8;
-  --bg:#f0f2f6; --surface:#fff; --border:#dde3ed; --text:#1a1a2e; --muted:#6b7280;
-  --no:#2563eb; --no-bg:#eff6ff; --no-b:#bfdbfe;
-  --fov:#16a34a; --fov-bg:#f0fdf4; --fov-b:#bbf7d0;
-  --ito:#9333ea; --ito-bg:#faf5ff; --ito-b:#e9d5ff;
-  --felles:#C8973A; --felles-bg:#fffbeb; --felles-b:#fde68a;
-  --danger:#ef4444; --success:#22c55e; --r:10px;
+  /* Arendal kommune offisielle farger */
+  --arendal-blue:#34AFE0; --arendal-dark-blue:#003879; --arendal-light-blue:#A4E5FF;
+  --arendal-sand:#F7EADF; --arendal-grey:#EDEDED; --arendal-black:#001731;
+  --arendal-green-dark:#255330; --arendal-green:#64B578;
+  --arendal-red:#EF424C; --arendal-yellow:#FDCA4F;
+
+  --navy:var(--arendal-dark-blue); --navy-l:#004d9e;
+  --gold:var(--arendal-yellow); --gold-l:#FFF8E1;
+  --bg:#f0f2f6; --surface:#fff; --border:#d0d9e8; --text:var(--arendal-black); --muted:#5b6b82;
+  --no:var(--arendal-blue); --no-bg:#e8f7fc; --no-b:var(--arendal-light-blue);
+  --fov:var(--arendal-green-dark); --fov-bg:#ebf5ec; --fov-b:var(--arendal-green);
+  --ito:#7c3aed; --ito-bg:#f5f0ff; --ito-b:#c4b5fd;
+  --felles:var(--arendal-dark-blue); --felles-bg:#e8eef5; --felles-b:#a4c0d8;
+  --danger:var(--arendal-red); --success:var(--arendal-green); --r:10px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
@@ -84,6 +91,23 @@ header{background:var(--navy);color:white;padding:0 24px;height:58px;display:fle
 .fbtn.act-felles{background:var(--felles);color:white;border-color:var(--felles)}
 .this-week-btn{margin-left:auto;padding:6px 15px;border-radius:8px;border:none;background:var(--gold);color:white;font-size:.79rem;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;transition:opacity .15s}
 .this-week-btn:hover{opacity:.85}
+.neste-nav{display:flex;align-items:center;gap:5px}
+.neste-label{font-size:.79rem;font-weight:700;color:var(--muted);white-space:nowrap}
+.neste-sel{padding:5px 8px;border:1.5px solid var(--border);border-radius:7px;font-size:.8rem;font-family:'DM Sans',sans-serif;outline:none;color:var(--text);background:white;cursor:pointer}
+.neste-sel:focus{border-color:var(--navy)}
+.neste-btn{padding:5px 11px;border-radius:7px;border:1.5px solid var(--navy);background:var(--navy);color:white;font-size:.85rem;cursor:pointer;font-weight:700;transition:all .15s}
+.neste-btn:hover{background:var(--navy-l);border-color:var(--navy-l)}
+/* Ukesaktuelt badges */
+.ukes-badge{display:inline-block;padding:2px 8px;border-radius:12px;font-size:.68rem;font-weight:700;margin-right:4px;margin-bottom:2px;border:1px solid transparent;line-height:1.6}
+.ukes-beskrivelse{font-size:.78rem;color:#44475a;line-height:1.5;display:block;margin-top:3px}
+/* Ukesaktuelt category checkboxes in admin */
+.ukes-cat-grid{display:flex;flex-wrap:wrap;gap:5px;padding:8px;background:var(--bg);border-radius:var(--r);border:1.5px solid var(--border)}
+.ukes-cat-chip{display:flex;align-items:center;gap:4px;padding:3px 10px;border-radius:12px;border:1.5px solid var(--border);background:white;cursor:pointer;font-size:.76rem;font-weight:600;color:var(--text);user-select:none;transition:all .12s}
+.ukes-cat-chip:hover{border-color:var(--navy)}
+.ukes-cat-chip input{width:12px;height:12px;cursor:pointer;accent-color:var(--navy)}
+.ukes-cat-chip.selected{border-color:var(--navy);background:#e8eef5}
+/* meeting type badge inside event tag */
+.mtbadge{display:inline-block;font-size:.68rem;font-weight:700;padding:1px 7px;border-radius:8px;background:rgba(0,0,0,.08);margin-right:5px;white-space:nowrap}
 .month-nav{display:flex;gap:5px;padding:8px 24px;overflow-x:auto;scrollbar-width:none;background:white;border-top:1px solid var(--border)}
 .month-nav::-webkit-scrollbar{display:none}
 .mpill{padding:3px 13px;border-radius:20px;background:white;border:1.5px solid var(--border);font-size:.75rem;font-weight:700;cursor:pointer;white-space:nowrap;color:var(--muted);transition:all .15s;font-family:'DM Sans',sans-serif}
@@ -290,15 +314,15 @@ main{padding:14px 24px 60px;max-width:1100px;margin:0 auto;width:100%}
           <span style="color:var(--muted)">🔍</span>
           <input type="text" id="searchInput" placeholder="Søk i planen…" oninput="filterWeeks()">
         </div>
-        <div class="filter-group">
-          <button class="fbtn act-alle" onclick="setFilter('alle',this)">Alle</button>
-          <button class="fbtn" onclick="setFilter('no',this)">Norsk</button>
-          <button class="fbtn" onclick="setFilter('fov',this)">FOV</button>
-          <button class="fbtn" onclick="setFilter('ito',this)">ITO</button>
-          <button class="fbtn" onclick="setFilter('felles',this)">Felles</button>
+        <div class="neste-nav">
+          <span class="neste-label">Neste:</span>
+          <select id="nesteKategori" class="neste-sel">
+            <option value="">– velg –</option>
+          </select>
+          <button class="neste-btn" onclick="gotoNesteKategori()">→</button>
         </div>
         <div class="goto-uke">
-          <span>Gå til uke</span>
+          <span>Uke</span>
           <input type="number" id="gotoWeekInput" min="1" max="52" placeholder="nr" onkeydown="if(event.key==='Enter')gotoWeek()">
           <button onclick="gotoWeek()">↵</button>
         </div>
@@ -493,6 +517,37 @@ const TEMPLATE_MONTHS = [
 ];
 
 const DEFAULT_FERIER = {40:'HØSTFERIE', 52:'JULEFERIE', 1:'JULEFERIE', 8:'VINTERFERIE', 14:'PÅSKE'};
+
+// ─── UKESAKTUELT CATEGORIES ───────────────────────────────────────────────────
+const UKESAKTUELT_CATEGORIES = [
+  'Planleggingsdag','Tentamen','Pilotering','Muntlig prøve','Prøver',
+  'Frist / påmelding','Arrangement for deltakere','DKS','Besøk','Samling','Ledersamling'
+];
+const CATEGORY_COLORS = {
+  'Planleggingsdag':      {bg:'#dbeafe',color:'#1d4ed8',border:'#93c5fd'},
+  'Tentamen':             {bg:'#fee2e2',color:'#b91c1c',border:'#fca5a5'},
+  'Pilotering':           {bg:'#f3e8ff',color:'#7e22ce',border:'#d8b4fe'},
+  'Muntlig prøve':        {bg:'#fce7f3',color:'#be185d',border:'#f9a8d4'},
+  'Prøver':               {bg:'#ffedd5',color:'#c2410c',border:'#fdba74'},
+  'Frist / påmelding':    {bg:'#fef9c3',color:'#a16207',border:'#fde047'},
+  'Arrangement for deltakere':{bg:'#dcfce7',color:'#166534',border:'#86efac'},
+  'DKS':                  {bg:'#ccfbf1',color:'#0f766e',border:'#5eead4'},
+  'Besøk':                {bg:'#fef3c7',color:'#92400e',border:'#fcd34d'},
+  'Samling':              {bg:'#dbeafe',color:'#1e40af',border:'#60a5fa'},
+  'Ledersamling':         {bg:'#dcfce7',color:'#14532d',border:'#4ade80'},
+};
+
+// ─── MØTETYPE OPTIONS PER DAY ──────────────────────────────────────────────────
+const MEETINGTYPE_OPTIONS = {
+  mandag:  ['Avdelingsmøte','Teamarbeid','Klasselærermøte'],
+  onsdag:  ['Samarbeidstid','Arrangement','Tverrfaglig tema','Klubbmøte'],
+  torsdag: ['Personalmøte','Avdelingsmøte','Felles utviklingsarbeid']
+};
+const MEETINGTYPE_DEFAULT = {
+  mandag: 'Avdelingsmøte',
+  onsdag: 'Samarbeidstid',
+  torsdag: 'Personalmøte'
+};
 
 function makeBlankPlan(name, kjokkenPersons, trivselPersons) {
   const weeks = {};
@@ -758,6 +813,7 @@ function startApp() {
   const vs = document.getElementById('viewerSticky');
   if (vs) vs.style.top = stickyTop;
   renderPlanSelector();
+  populateNesteSelect();
   renderViewer();
 }
 
@@ -813,6 +869,66 @@ function getCurrentWeekNumber() {
   const weekNum = Math.floor(diff / oneWeek);
   const day = start.getDay() || 7;
   return day <= 4 ? weekNum + 1 : weekNum + 2;
+}
+
+// ─── UKESAKTUELT HELPERS ───────────────────────────────────────────────────────
+function getWeekCategories(w) {
+  if (!w || !w.ukesaktuelt) return [];
+  if (typeof w.ukesaktuelt === 'object') return w.ukesaktuelt.categories || [];
+  return [];
+}
+function getWeekBeskrivelse(w) {
+  if (!w || !w.ukesaktuelt) return '';
+  if (typeof w.ukesaktuelt === 'string') return w.ukesaktuelt;
+  return w.ukesaktuelt.beskrivelse || '';
+}
+function setWeekUkesaktuelt(w, categories, beskrivelse) {
+  w.ukesaktuelt = {categories, beskrivelse};
+}
+
+function renderCategoryBadges(categories) {
+  return (categories||[]).map(cat => {
+    const c = CATEGORY_COLORS[cat] || {bg:'#e5e7eb',color:'#374151',border:'#d1d5db'};
+    return `<span class="ukes-badge" style="background:${c.bg};color:${c.color};border-color:${c.border}">${escHtml(cat)}</span>`;
+  }).join('');
+}
+
+function gotoNesteKategori() {
+  const kategori = document.getElementById('nesteKategori').value;
+  if (!kategori) { showToast('Velg en kategori først', 'error'); return; }
+  const plan = getActivePlan();
+  if (!plan) return;
+  const thisWeek = getCurrentWeekNumber();
+  const sortedWeeks = getAllWeeksSorted(plan);
+  let currentIdx = sortedWeeks.indexOf(thisWeek);
+  if (currentIdx === -1) currentIdx = -1;
+  for (let i = currentIdx + 1; i < sortedWeeks.length; i++) {
+    const wNum = sortedWeeks[i];
+    const w = plan.weeks[wNum];
+    if (!w || w.isFerie) continue;
+    if (getWeekCategories(w).includes(kategori)) {
+      const el = document.getElementById('week-' + wNum);
+      if (el) {
+        el.scrollIntoView({behavior:'smooth', block:'center'});
+        el.style.outline = '3px solid var(--gold)';
+        el.style.outlineOffset = '3px';
+        setTimeout(() => { el.style.outline = ''; el.style.outlineOffset = ''; }, 1800);
+      }
+      return;
+    }
+  }
+  showToast('Ingen kommende «' + kategori + '» funnet', 'error');
+}
+
+function populateNesteSelect() {
+  const sel = document.getElementById('nesteKategori');
+  if (!sel) return;
+  sel.innerHTML = '<option value="">– velg –</option>';
+  UKESAKTUELT_CATEGORIES.forEach(cat => {
+    const opt = document.createElement('option');
+    opt.value = cat; opt.textContent = cat;
+    sel.appendChild(opt);
+  });
 }
 
 function renderViewer() {
@@ -872,7 +988,9 @@ function renderWeeks(plan) {
         const wednesdayEvents = renderEventTags(w.onsdag||[]);
         const thursdayEvents = renderEventTags(w.torsdag||[]);
         const vaktLine = buildVaktLine(w);
-        const ukeTxt = w.ukesaktuelt ? `<div class="ukesaktuelt"><strong>Ukesaktuelt</strong>${escHtml(w.ukesaktuelt)}</div>` : '';
+        const cats = getWeekCategories(w);
+        const beskr = getWeekBeskrivelse(w);
+        const ukeTxt = (cats.length || beskr) ? `<div class="ukesaktuelt"><strong>Ukesaktuelt</strong>${renderCategoryBadges(cats)}${beskr ? `<span class="ukes-beskrivelse">${escHtml(beskr)}</span>` : ''}</div>` : '';
         row.innerHTML = `
           <div class="week-inner">
             <div class="week-label">
@@ -918,7 +1036,9 @@ function renderEventTags(events) {
   if (!events || !events.length) return '';
   return events.map(e => {
     const cls = e.dept ? 'tag-'+e.dept.toLowerCase() : 'tag-gen';
-    return `<div class="event-tag ${cls}">${escHtml(e.text)}</div>`;
+    const mtBadge = e.meetingType ? `<span class="mtbadge">${escHtml(e.meetingType)}</span>` : '';
+    const desc = e.text ? escHtml(e.text) : '';
+    return `<div class="event-tag ${cls}">${mtBadge}${desc}</div>`;
   }).join('');
 }
 
@@ -985,16 +1105,15 @@ function filterWeeks() {
     if (w.isFerie) { row.classList.toggle('hidden', !!q); return; }
     let show = true;
     if (q) {
+      const cats = getWeekCategories(w);
+      const beskr = getWeekBeskrivelse(w);
+      const allEvents = [...(w.mandag||[]), ...(w.onsdag||[]), ...(w.torsdag||[])];
       const searchable = [
-        w.ukesaktuelt||'', w.kjøkkenvakt||'', w.trivselsvakt||'', w.fraværInfo||'',
-        ...(w.mandag||[]).map(e=>e.text), ...(w.onsdag||[]).map(e=>e.text), ...(w.torsdag||[]).map(e=>e.text)
+        beskr, w.kjøkkenvakt||'', w.trivselsvakt||'', w.fraværInfo||'',
+        ...cats,
+        ...allEvents.map(e=>(e.meetingType||'')+' '+(e.text||''))
       ].join(' ').toLowerCase();
       show = searchable.includes(q);
-    }
-    if (show && currentFilter !== 'alle') {
-      const allEvents = [...(w.mandag||[]), ...(w.onsdag||[]), ...(w.torsdag||[])];
-      show = allEvents.some(e => (e.dept||'').toLowerCase() === currentFilter) ||
-             (currentFilter === 'felles' && allEvents.some(e => !e.dept || e.dept === 'felles'));
     }
     row.classList.toggle('hidden', !show);
   });
@@ -1035,8 +1154,10 @@ function renderWeekList(plan) {
       const item = document.createElement('div');
       item.className = 'week-item' + (w.isFerie?' is-ferie':'') + (currentWeekEdit===wNum?' sel':'');
       item.onclick = () => editWeek(wNum);
+      const cats = getWeekCategories(w);
+      const beskr = getWeekBeskrivelse(w);
       const preview = w.isFerie ? (w.ferieNavn||'Ferie') :
-        ((w.ukesaktuelt||'').substring(0,40) || 'Tom uke');
+        (cats.length ? cats[0]+(cats.length>1?` +${cats.length-1}`:'') : (beskr.substring(0,40) || 'Tom uke'));
       item.innerHTML = `<div class="wi-num">${wNum}</div><div class="wi-month">${m.name.substring(0,6)}</div><div class="wi-info">${escHtml(preview)}</div>`;
       list.appendChild(item);
     });
@@ -1075,7 +1196,20 @@ function editWeek(wNum) {
     </div>
 
     <div id="normalFields" style="${w.isFerie?'display:none':''}">
-      <div class="field"><label>Ukesaktuelt</label><textarea id="edUkesaktuelt" rows="3">${escAttr(w.ukesaktuelt||'')}</textarea></div>
+      <div class="field">
+        <label>Ukesaktuelt kategori</label>
+        <div class="ukes-cat-grid" id="ukesCatGrid">
+          ${UKESAKTUELT_CATEGORIES.map(cat => {
+            const checked = getWeekCategories(w).includes(cat);
+            const c = CATEGORY_COLORS[cat]||{};
+            return `<label class="ukes-cat-chip${checked?' selected':''}" id="chip-${escAttr(cat)}">
+              <input type="checkbox" class="ukes-cat-check" value="${escAttr(cat)}" ${checked?'checked':''} onchange="this.closest('label').classList.toggle('selected',this.checked)">
+              ${escHtml(cat)}
+            </label>`;
+          }).join('')}
+        </div>
+      </div>
+      <div class="field"><label>Ukesaktuelt beskrivelse (valgfritt)</label><textarea id="edUkesaktuelt" rows="2" placeholder="Kort beskrivelse, frister, info…">${escAttr(getWeekBeskrivelse(w))}</textarea></div>
       <div class="form-grid">
         <div class="field"><label>🍳 Kjøkkenvakt</label><input id="edKjokken" value="${escAttr(w.kjøkkenvakt||'')}"></div>
         <div class="field"><label>🎉 Trivselsvakt</label><input id="edTrivsel" value="${escAttr(w.trivselsvakt||'')}"></div>
@@ -1083,17 +1217,17 @@ function editWeek(wNum) {
       <div class="field"><label>📌 Fravær / annen info</label><input id="edFravær" value="${escAttr(w.fraværInfo||'')}"></div>
 
       <div class="section-divider"></div>
-      <div class="section-label">Mandag 14:15–15:30 – Fag- og team-møter</div>
+      <div class="section-label">Mandag 14:15–15:30</div>
       <div id="mondayEvents">${renderEventEditor(w.mandag||[], 'mandag')}</div>
       <button class="add-row-btn" onclick="addEvent('mandag')">+ Legg til</button>
 
       <div class="section-divider"></div>
-      <div class="section-label">Onsdag 14:15–15:30 – Workshops, opplæring m.m.</div>
+      <div class="section-label">Onsdag 14:15–15:30</div>
       <div id="onsdagEvents">${renderEventEditor(w.onsdag||[], 'onsdag')}</div>
       <button class="add-row-btn" onclick="addEvent('onsdag')">+ Legg til</button>
 
       <div class="section-divider"></div>
-      <div class="section-label">Torsdag 13:15–15:30 – Avdelings- og personalmøter</div>
+      <div class="section-label">Torsdag 13:15–15:30</div>
       <div id="torsdagEvents">${renderEventEditor(w.torsdag||[], 'torsdag')}</div>
       <button class="add-row-btn" onclick="addEvent('torsdag')">+ Legg til</button>
     </div>
@@ -1107,18 +1241,28 @@ function editWeek(wNum) {
 function escAttr(str) { return String(str||'').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 
 function renderEventEditor(events, day) {
-  return events.map((e,i) => `
-    <div class="event-row" id="ev-${day}-${i}">
-      <select onchange="updateEvent('${day}',${i},'dept',this.value)">
-        <option value="">– avd –</option>
-        <option value="no" ${e.dept==='no'?'selected':''}>NO</option>
-        <option value="fov" ${e.dept==='fov'?'selected':''}>FOV</option>
-        <option value="ito" ${e.dept==='ito'?'selected':''}>ITO</option>
-        <option value="felles" ${e.dept==='felles'?'selected':''}>Felles</option>
+  const mtOpts = MEETINGTYPE_OPTIONS[day] || [];
+  return events.map((e,i) => {
+    const mtSelects = mtOpts.map(opt =>
+      `<option value="${escAttr(opt)}" ${(e.meetingType||'')===opt?'selected':''}>${escAttr(opt)}</option>`
+    ).join('');
+    return `
+    <div class="event-row" id="ev-${day}-${i}" style="flex-wrap:wrap;gap:5px">
+      <select onchange="updateEvent('${day}',${i},'meetingType',this.value)" style="flex:0 0 auto;width:auto;max-width:160px;padding:6px 6px;font-size:.75rem">
+        <option value="">– møtetype –</option>
+        ${mtSelects}
       </select>
-      <input value="${escAttr(e.text||'')}" oninput="updateEvent('${day}',${i},'text',this.value)" placeholder="Møtebeskrivelse…">
-      <button onclick="removeEvent('${day}',${i})">✕</button>
-    </div>`).join('');
+      <select onchange="updateEvent('${day}',${i},'dept',this.value)" style="flex:0 0 70px;padding:6px 4px;font-size:.75rem">
+        <option value="">– avd –</option>
+        <option value="no" ${(e.dept||'')==='no'?'selected':''}>NO</option>
+        <option value="fov" ${(e.dept||'')==='fov'?'selected':''}>FOV</option>
+        <option value="ito" ${(e.dept||'')==='ito'?'selected':''}>ITO</option>
+        <option value="felles" ${(e.dept||'')==='felles'||!e.dept?'selected':''}>Felles</option>
+      </select>
+      <input value="${escAttr(e.text||'')}" oninput="updateEvent('${day}',${i},'text',this.value)" placeholder="Møtebeskrivelse (valgfritt)…" style="flex:1;min-width:140px">
+      <button onclick="removeEvent('${day}',${i})" style="flex:0 0 auto">✕</button>
+    </div>`;
+  }).join('');
 }
 
 function toggleFerieFields() {
@@ -1142,7 +1286,7 @@ function updateEvent(day, idx, field, val) {
 }
 function addEvent(day) {
   const events = getTempEvents(day);
-  events.push({text:'',dept:''});
+  events.push({text:'', dept:'felles', meetingType: MEETINGTYPE_DEFAULT[day] || ''});
   const container = document.getElementById(day+'Events');
   container.innerHTML = renderEventEditor(events, day);
 }
@@ -1161,7 +1305,8 @@ function saveWeek() {
   if (isFerie) {
     w.ferieNavn = document.getElementById('edFerieNavn').value;
   } else {
-    w.ukesaktuelt = document.getElementById('edUkesaktuelt').value;
+    const selCats = Array.from(document.querySelectorAll('.ukes-cat-check:checked')).map(cb => cb.value);
+    w.ukesaktuelt = {categories: selCats, beskrivelse: document.getElementById('edUkesaktuelt').value};
     w.kjøkkenvakt = document.getElementById('edKjokken').value;
     w.trivselsvakt = document.getElementById('edTrivsel').value;
     w.fraværInfo = document.getElementById('edFravær').value;
