@@ -31,12 +31,18 @@ body{font-family:'DM Sans',sans-serif;background:linear-gradient(180deg,#f7f9fc 
 /* ── LOCK SCREEN ── */
 #lockScreen{position:fixed;inset:0;background:linear-gradient(145deg,#003879 0%,#001f45 58%,#34AFE0 150%);display:flex;align-items:center;justify-content:center;z-index:9999;flex-direction:column;padding:24px}
 #lockScreen:before{content:'';position:absolute;inset:auto -10% -18% -10%;height:42%;background:rgba(164,229,255,.16);border-radius:55% 55% 0 0;pointer-events:none}
-.lock-card{position:relative;background:rgba(255,255,255,.96);border:1px solid rgba(255,255,255,.6);border-radius:18px;padding:44px 48px;width:370px;box-shadow:0 24px 80px rgba(0,0,0,.35);text-align:center}
-.lock-logo{font-size:2.4rem;margin-bottom:6px}
+.lock-card{position:relative;background:rgba(255,255,255,.96);border:1px solid rgba(255,255,255,.6);border-radius:18px;padding:42px 48px;width:370px;box-shadow:0 24px 80px rgba(0,0,0,.35);text-align:center;overflow:hidden}
+.lock-card:before{content:'';position:absolute;inset:0 0 auto;height:5px;background:linear-gradient(90deg,var(--arendal-blue),var(--gold),var(--arendal-green));pointer-events:none}
+.brand-mark{width:48px;height:48px;border-radius:14px;background:linear-gradient(145deg,var(--navy),#0055a8);color:white;display:inline-grid;place-items:center;position:relative;box-shadow:0 10px 24px rgba(0,56,121,.24);overflow:hidden;flex:0 0 auto}
+.brand-mark:before{content:'';position:absolute;left:-16%;right:-16%;bottom:-31%;height:48%;background:rgba(164,229,255,.35);border-radius:55% 55% 0 0}
+.brand-mark span{position:relative;font-size:.84rem;font-weight:900;letter-spacing:.7px;transform:translateY(-3px)}
+.brand-wave{position:absolute;left:50%;bottom:9px;width:28px;height:9px;transform:translateX(-50%);color:var(--arendal-blue)}
+.brand-wave path{stroke:currentColor;stroke-width:4;fill:none;stroke-linecap:round}
+.lock-logo{margin:0 auto 12px}
 .lock-title{font-size:1.25rem;font-weight:800;color:var(--navy);margin-bottom:4px}
 .lock-sub{font-size:.82rem;color:var(--muted);margin-bottom:24px}
 .lock-opts{display:flex;flex-direction:column;gap:10px;margin-bottom:18px}
-.lock-opt{padding:13px 16px;border-radius:var(--r);font-size:.93rem;font-weight:700;cursor:pointer;border:2px solid var(--border);background:white;color:var(--navy);transition:all .15s;font-family:'DM Sans',sans-serif}
+.lock-opt{padding:13px 16px;border-radius:var(--r);font-size:.93rem;font-weight:700;cursor:pointer;border:2px solid var(--border);background:white;color:var(--navy);transition:all .15s;font-family:'DM Sans',sans-serif;display:flex;align-items:center;justify-content:center;gap:8px}
 .lock-opt:hover{border-color:var(--navy);background:var(--bg)}
 .lock-opt.primary{background:var(--navy);color:white;border-color:var(--navy)}
 .lock-opt.primary:hover{background:var(--navy-l)}
@@ -53,46 +59,54 @@ body{font-family:'DM Sans',sans-serif;background:linear-gradient(180deg,#f7f9fc 
 #app{display:none;min-height:100vh;flex-direction:column}
 
 /* HEADER */
-header{background:var(--navy);color:white;padding:0 24px;height:58px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:200;box-shadow:0 2px 12px rgba(0,0,0,.2)}
+header{background:linear-gradient(135deg,var(--navy),#00478f);color:white;padding:0 20px;height:62px;display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:18px;position:sticky;top:0;z-index:200;box-shadow:0 2px 12px rgba(0,0,0,.2)}
 .hdr-left{display:flex;align-items:center;gap:14px}
-.hdr-logo{font-size:1.4rem}
+.hdr-logo{width:36px;height:36px;border-radius:11px}
+.hdr-logo span{font-size:.68rem}
+.hdr-logo .brand-wave{width:22px;bottom:7px}
 .hdr-title{font-size:1rem;font-weight:800}
 .hdr-sub{font-size:.71rem;opacity:.6}
-.hdr-right{display:flex;align-items:center;gap:8px}
-.hdr-badge{background:var(--gold);color:white;font-size:.67rem;font-weight:800;padding:3px 10px;border-radius:20px;letter-spacing:.8px;text-transform:uppercase}
+.hdr-right{display:flex;align-items:center;gap:8px;justify-self:end}
+.hdr-badge{background:rgba(253,202,79,.18);color:var(--gold);font-size:.67rem;font-weight:800;padding:3px 10px;border-radius:20px;letter-spacing:.8px;text-transform:uppercase;border:1px solid rgba(253,202,79,.32)}
 .sync-badge{font-size:.67rem;font-weight:800;padding:3px 10px;border-radius:20px;letter-spacing:.7px;text-transform:uppercase;background:rgba(255,255,255,.12);color:rgba(255,255,255,.82);border:1px solid rgba(255,255,255,.18)}
 .sync-badge.online{background:#16a34a;color:white;border-color:#16a34a}
 .sync-badge.saving{background:var(--gold);color:white;border-color:var(--gold)}
 .sync-badge.error{background:var(--danger);color:white;border-color:var(--danger)}
 .hdr-plan-sel{background:var(--arendal-dark-blue);color:white;border:1.5px solid rgba(255,255,255,.35);padding:5px 10px;border-radius:8px;font-size:.8rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;outline:none}
 .hdr-plan-sel option{background:#003879;color:white}
-.hdr-btn{background:rgba(255,255,255,.12);color:white;border:1px solid rgba(255,255,255,.2);padding:5px 12px;border-radius:8px;font-size:.78rem;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background .15s}
+.hdr-btn{background:rgba(255,255,255,.12);color:white;border:1px solid rgba(255,255,255,.2);padding:5px 12px;border-radius:8px;font-size:.78rem;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background .15s;display:inline-flex;align-items:center;gap:6px}
 .hdr-btn:hover{background:rgba(255,255,255,.22)}
+.icon{width:16px;height:16px;stroke:currentColor;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round;flex:0 0 auto}
+.icon-sm{width:14px;height:14px}
 
 /* TABS (viewer vs admin) */
-.mode-tabs{display:flex;background:var(--navy-l);padding:0 24px;position:sticky;top:var(--header-offset);z-index:150}
-.mode-tab{padding:8px 18px;font-size:.8rem;font-weight:700;color:rgba(255,255,255,.55);cursor:pointer;border-bottom:3px solid transparent;transition:all .15s;letter-spacing:.3px}
-.mode-tab.active{color:white;border-color:var(--gold)}
-.mode-tab:hover:not(.active){color:rgba(255,255,255,.8)}
+.mode-tabs{display:flex;align-items:center;gap:4px;justify-self:center;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.16);border-radius:999px;padding:3px;min-width:0}
+.mode-tab{appearance:none;border:0;background:transparent;border-radius:999px;padding:7px 12px;font-size:.78rem;font-weight:800;color:rgba(255,255,255,.66);cursor:pointer;transition:all .15s;letter-spacing:.1px;font-family:'DM Sans',sans-serif;display:flex;align-items:center;gap:6px;white-space:nowrap}
+.mode-tab.active{background:white;color:var(--navy);box-shadow:0 4px 14px rgba(0,0,0,.16)}
+.mode-tab:hover:not(.active){color:white;background:rgba(255,255,255,.10)}
 
 /* ── VIEWER ── */
 #viewerPane{flex:1;display:flex;flex-direction:column}
 .viewer-sticky{position:sticky;top:var(--app-top);z-index:100;background:white;box-shadow:0 3px 12px rgba(0,56,121,.10)}
-.toolbar{background:white;border-bottom:none;padding:10px 20px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;row-gap:7px}
+.toolbar{background:white;border-bottom:none;padding:10px 20px;display:grid;grid-template-columns:minmax(260px,1fr) auto auto;align-items:center;gap:10px}
 .goto-uke{display:flex;align-items:center;gap:4px;color:var(--muted);font-size:.76rem;font-weight:600}
 .goto-uke input{width:46px;padding:4px 5px;border:1.5px solid var(--border);border-radius:6px;font-size:.79rem;font-family:'DM Sans',sans-serif;outline:none;text-align:center;color:var(--text)}
 .goto-uke input:focus{border-color:var(--navy)}
 .goto-uke button{padding:4px 8px;border-radius:6px;border:1.5px solid var(--border);background:white;color:var(--navy);font-size:.79rem;cursor:pointer;font-weight:700;transition:all .15s}
 .goto-uke button:hover{background:var(--navy);color:white;border-color:var(--navy)}
-.search-box{display:flex;align-items:center;background:#f8fafc;border:1.5px solid var(--border);border-radius:8px;padding:6px 11px;gap:6px;min-width:210px}
-.search-box input{border:none;background:none;outline:none;font-size:.84rem;width:180px;color:var(--text);font-family:'DM Sans',sans-serif}
-.this-week-btn{margin-left:auto;padding:6px 14px;border-radius:8px;border:none;background:var(--gold);color:var(--arendal-dark-blue);font-size:.78rem;font-weight:800;cursor:pointer;font-family:'DM Sans',sans-serif;transition:opacity .15s,transform .15s}
-.this-week-btn:hover{opacity:.85}
-.neste-nav{display:flex;align-items:center;gap:4px}
-.neste-label{font-size:.76rem;font-weight:700;color:var(--muted);white-space:nowrap}
-.neste-sel{padding:4px 7px;border:1.5px solid var(--border);border-radius:6px;font-size:.77rem;font-family:'DM Sans',sans-serif;outline:none;color:var(--text);background:white;cursor:pointer;max-width:160px}
+.search-box{display:flex;align-items:center;background:#f8fafc;border:1.5px solid var(--border);border-radius:10px;padding:8px 12px;gap:8px;min-width:210px}
+.search-box input{border:none;background:none;outline:none;font-size:.9rem;width:100%;color:var(--text);font-family:'DM Sans',sans-serif}
+.week-jump-hint{display:none;align-items:center;gap:4px;background:var(--gold-l);color:#7a5200;border:1px solid rgba(253,202,79,.55);border-radius:999px;padding:2px 8px;font-size:.68rem;font-weight:900;white-space:nowrap}
+.search-box.week-ready{border-color:var(--gold);background:#fffdf2}
+.search-box.week-ready .week-jump-hint{display:inline-flex}
+.this-week-btn{padding:8px 14px;border-radius:10px;border:none;background:var(--gold);color:var(--arendal-dark-blue);font-size:.82rem;font-weight:900;cursor:pointer;font-family:'DM Sans',sans-serif;transition:opacity .15s,transform .15s;display:inline-flex;align-items:center;gap:7px;white-space:nowrap}
+.this-week-btn:hover{opacity:.92;transform:translateY(-1px)}
+.toolbar>.this-week-btn{grid-column:2;grid-row:1}
+.neste-nav{display:flex;align-items:center;gap:6px;border:1.5px solid var(--border);background:white;border-radius:10px;padding:5px 6px 5px 10px;white-space:nowrap}
+.neste-label{font-size:.76rem;font-weight:800;color:var(--navy);white-space:nowrap}
+.neste-sel{padding:4px 6px;border:none;border-left:1px solid var(--border);font-size:.79rem;font-family:'DM Sans',sans-serif;outline:none;color:var(--text);background:white;cursor:pointer;max-width:170px}
 .neste-sel:focus{border-color:var(--navy)}
-.neste-btn{padding:4px 10px;border-radius:6px;border:1.5px solid var(--navy);background:var(--navy);color:white;font-size:.8rem;cursor:pointer;font-weight:700;transition:all .15s}
+.neste-btn{padding:6px 10px;border-radius:8px;border:1.5px solid var(--navy);background:var(--navy);color:white;font-size:.8rem;cursor:pointer;font-weight:700;transition:all .15s}
 .neste-btn:hover{background:var(--navy-l);border-color:var(--navy-l)}
 /* Ukesaktuelt badges */
 .ukes-badge{display:inline-block;padding:2px 8px;border-radius:12px;font-size:.68rem;font-weight:700;margin-right:4px;margin-bottom:2px;border:1px solid transparent;line-height:1.6}
@@ -104,19 +118,21 @@ header{background:var(--navy);color:white;padding:0 24px;height:58px;display:fle
 .ukes-cat-chip input{width:12px;height:12px;cursor:pointer;accent-color:var(--navy)}
 .ukes-cat-chip.selected{border-color:var(--navy);background:#e8eef5}
 /* meeting badges */
-.day-types{display:flex;gap:4px;flex-wrap:wrap;justify-content:flex-end}
-.day-type{display:inline-flex;align-items:center;min-height:20px;padding:2px 8px;border-radius:999px;background:#eef2f7;color:#4b5f7c;font-size:.66rem;font-weight:800;text-transform:none;letter-spacing:0;white-space:nowrap}
+.day-types{display:flex;gap:5px;flex-wrap:wrap;justify-content:flex-end;align-items:center;min-width:0}
+.day-type{display:inline-flex;align-items:center;min-height:22px;padding:3px 9px;border-radius:999px;background:#e8eef5;color:var(--navy);border:1px solid #bfd0e3;font-size:.68rem;font-weight:900;text-transform:none;letter-spacing:0;white-space:nowrap;line-height:1.2;box-shadow:0 1px 0 rgba(0,56,121,.04)}
 .dept-badge{display:inline-flex;align-items:center;justify-content:center;min-width:42px;padding:2px 8px;border-radius:999px;font-size:.68rem;font-weight:900;line-height:1.35;margin-right:8px;vertical-align:baseline;white-space:nowrap}
 .dept-no{background:rgba(52,175,224,.16);color:#075985}
 .dept-fov{background:rgba(100,181,120,.18);color:#166534}
 .dept-ito{background:rgba(124,58,237,.14);color:#6d28d9}
 .dept-felles{background:rgba(0,56,121,.13);color:#003879}
 .dept-gen{background:#e5e7eb;color:#374151}
-.month-nav{display:flex;gap:3px;padding:4px 20px 5px;overflow-x:auto;scrollbar-width:none;background:#002d63;border-top:1px solid rgba(255,255,255,.08);justify-content:flex-start;flex-wrap:nowrap;min-height:0}
+.month-nav{display:flex;gap:5px;padding:6px 20px 7px;overflow-x:auto;scrollbar-width:none;background:#002d63;border-top:1px solid rgba(255,255,255,.08);justify-content:flex-start;flex-wrap:nowrap;min-height:0}
 .month-nav::-webkit-scrollbar{display:none}
-.mpill{flex:0 0 auto;padding:2px 10px;border-radius:20px;background:transparent;border:1px solid transparent;font-size:.69rem;font-weight:600;cursor:pointer;white-space:nowrap;color:rgba(255,255,255,.45);transition:all .15s;font-family:'DM Sans',sans-serif}
+.mpill{flex:0 0 auto;padding:4px 10px;border-radius:20px;background:transparent;border:1px solid transparent;font-size:.72rem;font-weight:700;cursor:pointer;white-space:nowrap;color:rgba(255,255,255,.72);transition:all .15s;font-family:'DM Sans',sans-serif;display:flex;align-items:center;gap:6px}
 .mpill:hover{color:rgba(255,255,255,.85);background:rgba(255,255,255,.08)}
 .mpill.active{background:var(--arendal-yellow);color:#002d63;border-color:transparent;font-weight:800}
+.mpill.is-current:not(.active){color:white;border-color:rgba(253,202,79,.52);background:rgba(253,202,79,.12)}
+.mpill-dot{width:6px;height:6px;border-radius:50%;background:currentColor;opacity:.7}
 main{padding:14px 24px 60px;max-width:1100px;margin:0 auto;width:100%}
 .month-section{margin-bottom:26px}
 .month-hdr{display:flex;align-items:center;gap:12px;margin-bottom:10px;padding-top:6px}
@@ -133,6 +149,7 @@ main{padding:14px 24px 60px;max-width:1100px;margin:0 auto;width:100%}
 .week-num{font-size:1.4rem;font-weight:800;line-height:1}
 .week-badge{font-size:.56rem;background:rgba(255,255,255,.22);padding:2px 6px;border-radius:10px;letter-spacing:.5px;text-transform:uppercase}
 .week-content{padding:13px 18px;display:flex;flex-direction:column;gap:8px}
+.current-ribbon{align-self:flex-start;display:inline-flex;align-items:center;gap:6px;background:rgba(253,202,79,.2);color:#7a5200;border:1px solid rgba(253,202,79,.58);border-radius:999px;padding:3px 9px;font-size:.68rem;font-weight:900;text-transform:uppercase;letter-spacing:.5px}
 .ferie-inner{padding:16px 22px;display:flex;align-items:center;gap:12px}
 .ferie-text{font-weight:700;color:var(--muted);font-size:.88rem;letter-spacing:.8px;text-transform:uppercase}
 .ukesaktuelt{font-size:.81rem;color:#44475a;background:#f8f9fb;border-radius:6px;padding:6px 11px;border-left:3px solid var(--gold);line-height:1.55}
@@ -141,9 +158,13 @@ main{padding:14px 24px 60px;max-width:1100px;margin:0 auto;width:100%}
 .vakt-chip{background:var(--bg);border-radius:6px;padding:3px 9px;display:flex;gap:5px;align-items:center}
 .vakt-chip span{color:var(--text);font-weight:600}
 .meetings-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.meetings-grid.is-empty{display:block}
+.empty-week-note{border:1px dashed #d5deea;background:#f8fafc;color:#8a98aa;border-radius:8px;padding:10px 12px;font-size:.82rem;font-style:italic}
 .day-col{display:flex;flex-direction:column;gap:5px}
-.day-label{font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.6px;color:var(--navy);opacity:.85;padding:2px 0 5px;border-bottom:1.5px solid var(--border);margin-bottom:5px;display:flex;align-items:flex-start;justify-content:space-between;gap:8px;min-height:27px}
+.day-col.is-empty{opacity:.62}
+.day-label{font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.6px;color:var(--navy);opacity:.95;padding:2px 0 6px;border-bottom:1.5px solid var(--border);margin-bottom:5px;display:flex;align-items:flex-start;justify-content:space-between;gap:8px;min-height:29px;flex-wrap:wrap}
 .day-title{white-space:nowrap;line-height:1.8}
+.empty-day{display:block;color:#a5b1c2;font-size:.74rem;font-style:italic}
 .event-tag{border-radius:6px;padding:6px 9px;font-size:.8rem;line-height:1.45;border-left:3px solid transparent}
 .tag-no{background:var(--no-bg);border-color:var(--no);color:#1d4ed8}
 .tag-fov{background:var(--fov-bg);border-color:var(--fov);color:#15803d}
@@ -249,18 +270,20 @@ main{padding:14px 24px 60px;max-width:1100px;margin:0 auto;width:100%}
 .toast.error{background:var(--danger)}
 
 @media(max-width:900px){
-  header{height:auto;min-height:58px;padding:10px 14px;gap:10px;align-items:flex-start;flex-wrap:wrap}
-  .hdr-right{margin-left:auto;flex-wrap:wrap;justify-content:flex-end}
-  .mode-tabs{padding:0 12px;overflow-x:auto}
+  header{height:auto;min-height:58px;padding:10px 14px;gap:10px;grid-template-columns:1fr auto;align-items:start}
+  .mode-tabs{grid-column:1 / -1;justify-self:start;max-width:100%;overflow-x:auto}
+  .hdr-right{flex-wrap:wrap;justify-content:flex-end}
   .mode-tab{flex:0 0 auto;padding:9px 13px}
-  .toolbar{padding:10px 12px}
-  .search-box{flex:1 1 100%;min-width:0}
+  .toolbar{padding:10px 12px;grid-template-columns:1fr auto}
+  .search-box{min-width:0}
   .search-box input{width:100%}
-  .neste-nav,.goto-uke{flex:1 1 auto}
-  .this-week-btn{margin-left:0}
+  .neste-nav{grid-column:1 / -1;justify-self:stretch}
+  .neste-sel{flex:1;max-width:none}
+  .goto-uke{flex:1 1 auto}
   main{padding:12px 12px 48px}
   .meetings-grid{grid-template-columns:1fr}
   .day-col{background:#f8fafc;border:1px solid var(--border);border-radius:8px;padding:8px}
+  .meetings-grid.is-empty .empty-week-note{background:#f8fafc;border-radius:8px}
   .admin-body{display:block;min-height:auto}
   .sidebar{position:relative;top:auto;height:auto;max-height:260px;border-right:none;border-bottom:1px solid var(--border)}
   .editor{height:auto;padding:18px 14px}
@@ -294,16 +317,28 @@ main{padding:14px 24px 60px;max-width:1100px;margin:0 auto;width:100%}
 </style>
 </head>
 <body>
+<svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden">
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><path d="M20 21a8 8 0 0 0-16 0"></path><circle cx="12" cy="7" r="4"></circle></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="10" rx="2"></rect><path d="M8 10V7a4 4 0 0 1 8 0v3"></path></symbol>
+  <symbol id="i-list" viewBox="0 0 24 24"><path d="M8 6h13"></path><path d="M8 12h13"></path><path d="M8 18h13"></path><path d="M3 6h.01"></path><path d="M3 12h.01"></path><path d="M3 18h.01"></path></symbol>
+  <symbol id="i-edit" viewBox="0 0 24 24"><path d="M12 20h9"></path><path d="m16.5 3.5 4 4L7 21H3v-4L16.5 3.5z"></path></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></symbol>
+  <symbol id="i-settings" viewBox="0 0 24 24"><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"></path><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06A1.65 1.65 0 0 0 15 19.4a1.65 1.65 0 0 0-1 .6 1.65 1.65 0 0 0-.4 1.08V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 8.6 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.6 15a1.65 1.65 0 0 0-.6-1 1.65 1.65 0 0 0-1.08-.4H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 8.6a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.6a1.65 1.65 0 0 0 1-.6 1.65 1.65 0 0 0 .4-1.08V3a2 2 0 1 1 4 0v.09A1.65 1.65 0 0 0 15.4 4.6a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9c.17.36.43.67.76.88.33.21.72.32 1.12.32H21a2 2 0 1 1 0 4h-.09c-.4 0-.79.11-1.12.32-.33.21-.59.52-.76.88z"></path></symbol>
+  <symbol id="i-print" viewBox="0 0 24 24"><path d="M6 9V2h12v7"></path><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><path d="M6 14h12v8H6z"></path></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-5.2 7-12A7 7 0 0 0 5 9c0 6.8 7 12 7 12z"></path><circle cx="12" cy="9" r="2.5"></circle></symbol>
+  <symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 21v-7"></path><path d="M4 10V3"></path><path d="M12 21v-9"></path><path d="M12 8V3"></path><path d="M20 21v-5"></path><path d="M20 12V3"></path><path d="M2 14h4"></path><path d="M10 8h4"></path><path d="M18 16h4"></path></symbol>
+</svg>
 
 <!-- ══ LOCK SCREEN ══ -->
 <div id="lockScreen">
   <div class="lock-card">
-    <div class="lock-logo">📅</div>
+    <div class="brand-mark lock-logo"><span>AVO</span><svg class="brand-wave" viewBox="0 0 32 10" aria-hidden="true"><path d="M2 5 C7 2 11 2 16 5 S25 8 30 5"></path></svg></div>
     <div class="lock-title">SemesterAVO</div>
     <div class="lock-sub">Arendal Voksenopplæring</div>
     <div class="lock-opts">
-      <button class="lock-opt" onclick="enterAsTeacher()">👩‍🏫 Jeg er lærer / ansatt</button>
-      <button class="lock-opt primary" onclick="showPwForm()">🔐 Admin (ledelse)</button>
+      <button class="lock-opt" onclick="enterAsTeacher()"><svg class="icon"><use href="#i-user"></use></svg>Jeg er lærer / ansatt</button>
+      <button class="lock-opt primary" onclick="showPwForm()"><svg class="icon"><use href="#i-lock"></use></svg>Admin (ledelse)</button>
     </div>
     <div id="pwForm">
       <input class="lock-input" type="password" id="pwInput" placeholder="••••••" onkeydown="if(event.key==='Enter')checkPw()">
@@ -319,49 +354,44 @@ main{padding:14px 24px 60px;max-width:1100px;margin:0 auto;width:100%}
 
   <header>
     <div class="hdr-left">
-      <div class="hdr-logo">📅</div>
+      <div class="brand-mark hdr-logo"><span>AVO</span><svg class="brand-wave" viewBox="0 0 32 10" aria-hidden="true"><path d="M2 5 C7 2 11 2 16 5 S25 8 30 5"></path></svg></div>
       <div>
         <div class="hdr-title">SemesterAVO</div>
         <div class="hdr-sub">Arendal Voksenopplæring</div>
       </div>
     </div>
+    <div class="mode-tabs" id="modeTabs" style="display:none">
+      <button class="mode-tab active" onclick="switchMode('viewer')" id="tabViewer"><svg class="icon icon-sm"><use href="#i-list"></use></svg>Oversikt</button>
+      <button class="mode-tab" onclick="switchMode('admin')" id="tabAdmin"><svg class="icon icon-sm"><use href="#i-edit"></use></svg>Rediger plan</button>
+      <button class="mode-tab" onclick="switchMode('vakt')" id="tabVakt"><svg class="icon icon-sm"><use href="#i-users"></use></svg>Vaktoversikt</button>
+      <button class="mode-tab" onclick="switchMode('settings')" id="tabSettings"><svg class="icon icon-sm"><use href="#i-settings"></use></svg>Planer</button>
+    </div>
     <div class="hdr-right">
       <select class="hdr-plan-sel" id="planSelector" onchange="switchPlan(this.value)" title="Velg semesterplan"></select>
       <span class="sync-badge" id="syncStatus" title="Lagringsstatus">Lokal</span>
       <span class="hdr-badge" id="roleBadge">Lærer</span>
-      <button class="hdr-btn" onclick="printPlan()">🖨️ Skriv ut</button>
+      <button class="hdr-btn" onclick="printPlan()"><svg class="icon icon-sm"><use href="#i-print"></use></svg>Skriv ut</button>
       <button class="hdr-btn" id="logoutBtn" style="display:none" onclick="logout()">Logg ut</button>
     </div>
   </header>
-
-  <div class="mode-tabs" id="modeTabs" style="display:none">
-    <div class="mode-tab active" onclick="switchMode('viewer')" id="tabViewer">📋 Oversikt</div>
-    <div class="mode-tab" onclick="switchMode('admin')" id="tabAdmin">⚙️ Rediger plan</div>
-    <div class="mode-tab" onclick="switchMode('vakt')" id="tabVakt">👥 Vaktoversikt</div>
-    <div class="mode-tab" onclick="switchMode('settings')" id="tabSettings">🗂️ Planer & innstillinger</div>
-  </div>
 
   <!-- ── VIEWER ── -->
   <div id="viewerPane">
     <div id="viewerSticky" class="viewer-sticky">
       <div class="toolbar">
         <div class="search-box">
-          <span style="color:var(--muted)">🔍</span>
-          <input type="text" id="searchInput" placeholder="Søk i planen…" oninput="filterWeeks()">
+          <svg class="icon" style="color:var(--muted)"><use href="#i-search"></use></svg>
+          <input type="text" id="searchInput" placeholder="Søk i planen eller skriv uke nr." oninput="handleSearchInput()" onkeydown="handleSearchKey(event)">
+          <span class="week-jump-hint" id="weekJumpHint">Uke 5</span>
         </div>
         <div class="neste-nav">
-          <span class="neste-label">Neste:</span>
+          <span class="neste-label">Når er neste:</span>
           <select id="nesteKategori" class="neste-sel" onchange="_nesteLastWeek=null;_nesteLastKategori=null">
             <option value="">Velg kategori</option>
           </select>
           <button class="neste-btn" onclick="gotoNesteKategori()">→</button>
         </div>
-        <div class="goto-uke">
-          <span>Gå til uke:</span>
-          <input type="number" id="gotoWeekInput" min="1" max="52" placeholder="nr" onkeydown="if(event.key==='Enter')gotoWeek()">
-          <button onclick="gotoWeek()">↵</button>
-        </div>
-        <button class="this-week-btn" onclick="goToThisWeek()">📍 Denne uka</button>
+        <button class="this-week-btn" onclick="goToThisWeek()"><svg class="icon icon-sm"><use href="#i-pin"></use></svg>Denne uka</button>
       </div>
       <div class="month-nav" id="monthNav"></div>
     </div>
@@ -585,6 +615,11 @@ const MEETINGTYPE_DEFAULT = {
   onsdag: 'Samarbeidstid',
   torsdag: 'Personalmøte'
 };
+const MEETINGTYPE_SHORT_LABELS = {
+  'Klasselærermøte': 'Klasselærer',
+  'Tverrfaglig tema': 'Tverrfaglig',
+  'Felles utviklingsarbeid': 'Utviklingsarbeid'
+};
 
 function makeBlankPlan(name, kjokkenPersons, trivselPersons) {
   const weeks = {};
@@ -795,6 +830,36 @@ function getData() {
     d.activePlan = 'Semesterplan 2526';
     saveData(d);
   }
+  // Seed test plan if missing
+  if (!d.plans['Semesterplan 2526 TEST']) {
+    d.plans['Semesterplan 2526 TEST'] = buildPlan2526Test();
+    saveData(d);
+  }
+  // Seed TESTING plan if missing
+  if (!d.plans['Semesterplan 2526 TESTING']) {
+    d.plans['Semesterplan 2526 TESTING'] = buildPlan2526Testing();
+    saveData(d);
+  }
+  // Seed Veileder plan if missing
+  if (!d.plans['Semesterplan – Veileder']) {
+    d.plans['Semesterplan – Veileder'] = buildPlanVeileder();
+    saveData(d);
+  }
+  // Migration: update TEST plan person lists to real names (only if still lorem ipsum)
+  if (d.plans['Semesterplan 2526 TEST']) {
+    const tp = d.plans['Semesterplan 2526 TEST'];
+    if (!tp.kjokkenPersons || tp.kjokkenPersons[0] === 'Lorem') {
+      tp.kjokkenPersons = ['Martin','Eli Ann','Luwam','Thora','Sebastian','Iren','Magnar','Kristine','Mari H',
+        'Katarzyna','Hege','Ingrid G','Ann Christin','David','Signy','Beathe','Mustafa','Annette',
+        'Kristin','Wenche','Mari TH','Elena','Anna','Karl','Ken','Wanda','Gro','Marianne','Martine',
+        'Ingrid F','Inger L','Tone','Maria','Margit','Åse Linn','Benny','Lena','Lill-Anita','Camilla',
+        'Fikret','Haldor','Linda','Knut','Ingrid S'];
+      tp.trivselPersons = ['Katarzyna','Åse Linn','Luwam','Wenche','Marianne','Margot','Inger Lill',
+        'Mari Høivik','Wanda','Ingrid G','Ken','Thora','Magnar','Maria','Beathe','Elena','Gro','Martin',
+        'June','David','Hege','Juliane','Kristin','Kristine','Annette','Sebastian','Fikret','Benny'];
+      saveData(d);
+    }
+  }
   return d;
 }
 
@@ -812,6 +877,8 @@ let currentFilter = 'alle';
 let currentWeekEdit = null;
 let sbCurrentTab = 'weeks';
 let _autoSaveTimer = null;
+let _weekJumpTimer = null;
+let _monthScrollRaf = null;
 let _autoSaveWeek = null;
 let _hasPendingWeekChanges = false;
 
@@ -885,7 +952,7 @@ function startApp() {
   const app = document.getElementById('app');
   app.style.display='flex';
   document.getElementById('roleBadge').textContent = isAdmin ? 'Admin' : 'Lærer';
-  document.getElementById('logoutBtn').style.display = isAdmin ? '' : 'none';
+  document.getElementById('logoutBtn').style.display = '';
   document.getElementById('modeTabs').style.display = isAdmin ? 'flex' : 'none';
   updateStickyOffsets();
   renderPlanSelector();
@@ -895,11 +962,9 @@ function startApp() {
 
 function updateStickyOffsets() {
   const header = document.querySelector('header');
-  const tabs = document.getElementById('modeTabs');
   const headerH = header?.offsetHeight || 58;
-  const tabsH = isAdmin && tabs?.style.display !== 'none' ? tabs.offsetHeight : 0;
   document.documentElement.style.setProperty('--header-offset', headerH + 'px');
-  document.documentElement.style.setProperty('--app-top', (headerH + tabsH) + 'px');
+  document.documentElement.style.setProperty('--app-top', headerH + 'px');
 }
 
 // ═══════════════════════════════════════════════════════
@@ -1065,18 +1130,24 @@ function renderViewer() {
   if (!plan) { document.getElementById('planMain').innerHTML='<div class="no-results">Ingen plan funnet. Opprett en ny plan i Admin.</div>'; return; }
   renderMonthNav(plan);
   renderWeeks(plan);
-  setTimeout(highlightThisWeek, 100);
+  setTimeout(() => {
+    highlightThisWeek();
+    updateActiveMonthFromScroll();
+  }, 100);
 }
 
 function renderMonthNav(plan) {
   const nav = document.getElementById('monthNav');
   nav.innerHTML = '';
+  const currentWeek = getCurrentWeekNumber();
   TEMPLATE_MONTHS.forEach(m => {
     const hasWeeks = m.weeks.some(w => plan.weeks[w]);
     if (!hasWeeks) return;
     const pill = document.createElement('button');
-    pill.className = 'mpill';
-    pill.textContent = m.name;
+    const isCurrent = m.weeks.includes(currentWeek);
+    pill.className = 'mpill' + (isCurrent ? ' is-current' : '');
+    pill.dataset.month = m.name;
+    pill.innerHTML = `<span>${m.name}</span>${isCurrent ? '<span class="mpill-dot"></span>' : ''}`;
     pill.onclick = () => scrollToMonth(m.name);
     nav.appendChild(pill);
   });
@@ -1116,6 +1187,14 @@ function renderWeeks(plan) {
         const mondayEvents = renderEventTags(w.mandag||[]);
         const wednesdayEvents = renderEventTags(w.onsdag||[]);
         const thursdayEvents = renderEventTags(w.torsdag||[]);
+        const hasMeetings = !!(mondayEvents || wednesdayEvents || thursdayEvents);
+        const meetingsHtml = hasMeetings
+          ? `<div class="meetings-grid">
+                ${renderDayColumn('Man 14:15–15:30', w.mandag||[], mondayEvents)}
+                ${renderDayColumn('Ons 14:15–15:30', w.onsdag||[], wednesdayEvents)}
+                ${renderDayColumn('Tor 13:15–15:30', w.torsdag||[], thursdayEvents)}
+              </div>`
+          : '<div class="meetings-grid is-empty"><div class="empty-week-note">Ingen møter denne uka</div></div>';
         const vaktLine = buildVaktLine(w);
         const cats = getWeekCategories(w);
         const beskr = getWeekBeskrivelse(w);
@@ -1127,22 +1206,10 @@ function renderWeeks(plan) {
               <div class="week-badge">${isThis?'⬅ nå':'uke'}</div>
             </div>
             <div class="week-content">
+              ${isThis ? '<div class="current-ribbon">Denne uka</div>' : ''}
               ${vaktLine}
               ${ukeTxt}
-              <div class="meetings-grid">
-                <div class="day-col">
-                  ${renderDayLabel('Man 14:15–15:30', w.mandag||[])}
-                  ${mondayEvents||'<span style="color:#b0bbc8;font-size:.75rem;font-style:italic">Ingen møter</span>'}
-                </div>
-                <div class="day-col">
-                  ${renderDayLabel('Ons 14:15–15:30', w.onsdag||[])}
-                  ${wednesdayEvents||'<span style="color:#b0bbc8;font-size:.75rem;font-style:italic">Ingen møter</span>'}
-                </div>
-                <div class="day-col">
-                  ${renderDayLabel('Tor 13:15–15:30', w.torsdag||[])}
-                  ${thursdayEvents||'<span style="color:#b0bbc8;font-size:.75rem;font-style:italic">Ingen møter</span>'}
-                </div>
-              </div>
+              ${meetingsHtml}
             </div>
           </div>`;
       }
@@ -1163,8 +1230,16 @@ function buildVaktLine(w) {
 
 function renderDayLabel(label, events) {
   const types = [...new Set((events||[]).map(e => (e.meetingType||'').trim()).filter(Boolean))];
-  const typeHtml = types.map(t => `<span class="day-type">${escHtml(t)}</span>`).join('');
+  const typeHtml = types.map(t => `<span class="day-type" title="${escAttr(t)}">${escHtml(MEETINGTYPE_SHORT_LABELS[t] || t)}</span>`).join('');
   return `<div class="day-label"><span class="day-title">${escHtml(label)}</span><span class="day-types">${typeHtml}</span></div>`;
+}
+
+function renderDayColumn(label, events, eventHtml) {
+  return `
+    <div class="day-col${eventHtml ? '' : ' is-empty'}">
+      ${renderDayLabel(label, events)}
+      ${eventHtml || '<span class="empty-day">Ingen møter</span>'}
+    </div>`;
 }
 
 function renderEventTags(events) {
@@ -1188,19 +1263,27 @@ function highlightThisWeek() {
   const el = document.querySelector('.this-week');
   if (el) {
     el.scrollIntoView({behavior:'smooth', block:'center'});
-    document.getElementById('month-' + (TEMPLATE_MONTHS.find(m => m.weeks.includes(getCurrentWeekNumber()))||{name:''}).name)
-      ?.querySelector('.mpill')?.classList.add('active');
+    const currentMonth = (TEMPLATE_MONTHS.find(m => m.weeks.includes(getCurrentWeekNumber()))||{name:''}).name;
+    setActiveMonth(currentMonth);
+    refreshActiveMonthSoon();
   }
 }
 
 function goToThisWeek() {
   const el = document.querySelector('.this-week');
-  if (el) el.scrollIntoView({behavior:'smooth', block:'center'});
+  if (el) {
+    el.scrollIntoView({behavior:'smooth', block:'center'});
+    const currentMonth = (TEMPLATE_MONTHS.find(m => m.weeks.includes(getCurrentWeekNumber()))||{name:''}).name;
+    setActiveMonth(currentMonth);
+    refreshActiveMonthSoon();
+  }
   else showToast('Ingen aktiv skoleuke funnet', 'error');
 }
 
-function gotoWeek() {
-  const num = parseInt(document.getElementById('gotoWeekInput').value);
+function gotoWeek(num) {
+  if (num === undefined) {
+    num = parseInt(document.getElementById('searchInput').value);
+  }
   if (!num || num < 1 || num > 52) { showToast('Skriv inn et gyldig ukenummer (1–52)', 'error'); return; }
   const el = document.getElementById('week-'+num);
   if (el) {
@@ -1209,7 +1292,9 @@ function gotoWeek() {
     el.style.outlineOffset = '2px';
     el.style.borderRadius = '12px';
     setTimeout(() => { el.style.outline = ''; el.style.outlineOffset = ''; }, 1800);
-    document.getElementById('gotoWeekInput').value = '';
+    const monthName = (TEMPLATE_MONTHS.find(m => m.weeks.includes(num))||{name:''}).name;
+    setActiveMonth(monthName);
+    refreshActiveMonthSoon();
   } else {
     showToast('Uke '+num+' finnes ikke i denne planen', 'error');
   }
@@ -1218,7 +1303,48 @@ function gotoWeek() {
 function scrollToMonth(name) {
   const el = document.getElementById('month-'+name);
   if (el) el.scrollIntoView({behavior:'smooth', block:'start'});
-  document.querySelectorAll('.mpill').forEach(p => p.classList.toggle('active', p.textContent===name));
+  setActiveMonth(name);
+  refreshActiveMonthSoon();
+}
+
+function setActiveMonth(name) {
+  document.querySelectorAll('.mpill').forEach(p => p.classList.toggle('active', p.dataset.month === name));
+}
+
+function updateActiveMonthFromScroll() {
+  if (currentMode !== 'viewer') return;
+  const rows = [...document.querySelectorAll('.week-row:not(.hidden)')];
+  if (!rows.length) return;
+  const stickyBottom = document.getElementById('viewerSticky')?.getBoundingClientRect().bottom || 0;
+  const viewportTarget = stickyBottom + ((window.innerHeight - stickyBottom) * 0.38);
+  let activeWeek = parseInt(rows[0].dataset.week);
+  let bestDistance = Infinity;
+  rows.forEach(row => {
+    const rect = row.getBoundingClientRect();
+    if (rect.bottom < stickyBottom || rect.top > window.innerHeight) return;
+    const rowCenter = rect.top + rect.height / 2;
+    const distance = Math.abs(rowCenter - viewportTarget);
+    if (distance < bestDistance) {
+      activeWeek = parseInt(row.dataset.week);
+      bestDistance = distance;
+    }
+  });
+  const monthName = (TEMPLATE_MONTHS.find(m => m.weeks.includes(activeWeek))||{name:''}).name;
+  setActiveMonth(monthName);
+}
+
+function scheduleActiveMonthUpdate() {
+  if (_monthScrollRaf) return;
+  _monthScrollRaf = requestAnimationFrame(() => {
+    _monthScrollRaf = null;
+    updateActiveMonthFromScroll();
+  });
+}
+
+function refreshActiveMonthSoon() {
+  scheduleActiveMonthUpdate();
+  setTimeout(scheduleActiveMonthUpdate, 180);
+  setTimeout(scheduleActiveMonthUpdate, 520);
 }
 
 // ═══════════════════════════════════════════════════════
@@ -1231,18 +1357,51 @@ function setFilter(f, btn) {
   filterWeeks();
 }
 
+function getWeekQuery(value) {
+  const trimmed = (value || '').trim().toLowerCase();
+  const match = trimmed.match(/^(?:uke\s*)?(\d{1,2})$/);
+  if (!match) return null;
+  const num = parseInt(match[1], 10);
+  return num >= 1 && num <= 52 ? num : null;
+}
+
+function handleSearchInput() {
+  const input = document.getElementById('searchInput');
+  const weekNum = getWeekQuery(input.value);
+  const box = input.closest('.search-box');
+  const hint = document.getElementById('weekJumpHint');
+  box?.classList.toggle('week-ready', !!weekNum);
+  if (hint && weekNum) hint.textContent = 'Går til uke ' + weekNum;
+  clearTimeout(_weekJumpTimer);
+  if (weekNum) {
+    _weekJumpTimer = setTimeout(() => gotoWeek(weekNum), 420);
+  }
+  filterWeeks();
+}
+
+function handleSearchKey(event) {
+  if (event.key !== 'Enter') return;
+  const weekNum = getWeekQuery(event.currentTarget.value);
+  if (!weekNum) return;
+  event.preventDefault();
+  clearTimeout(_weekJumpTimer);
+  gotoWeek(weekNum);
+}
+
 function filterWeeks() {
-  const q = document.getElementById('searchInput').value.toLowerCase();
+  const searchValue = document.getElementById('searchInput').value;
+  const weekQuery = getWeekQuery(searchValue);
+  const q = weekQuery ? '' : searchValue.toLowerCase();
   const plan = getActivePlan();
   if (!plan) return;
   document.querySelectorAll('.week-row').forEach(row => {
     const wNum = parseInt(row.dataset.week);
     const w = plan.weeks[wNum];
     if (!w) return;
-    if (w.isFerie) { row.classList.toggle('hidden', !!q || currentFilter !== 'alle'); return; }
+    if (w.isFerie) { row.classList.toggle('hidden', !weekQuery && (!!q || currentFilter !== 'alle')); return; }
     let show = true;
     const allEvents = [...(w.mandag||[]), ...(w.onsdag||[]), ...(w.torsdag||[])];
-    if (currentFilter !== 'alle') {
+    if (!weekQuery && currentFilter !== 'alle') {
       show = allEvents.some(e => (e.dept || 'felles').toLowerCase() === currentFilter);
     }
     if (q) {
@@ -1829,13 +1988,571 @@ function buildPlan2526() {
   return {name:'Semesterplan 2526', weeks, kjokkenPersons, trivselPersons};
 }
 
+function buildPlan2526Testing() {
+  // Same as buildPlan2526Test but with real kjøkkenvakt/trivselsvakt pre-distributed for ALL weeks
+  const p = buildPlan2526Test();
+  p.name = 'Semesterplan 2526 TESTING';
+  // Pre-computed rotation (3 kjokken, 2 trivsel per week, all 40 active weeks)
+  const kv = {
+    33:'Martin, Eli Ann, Luwam', 34:'Thora, Sebastian, Iren', 35:'Magnar, Kristine, Mari H',
+    36:'Katarzyna, Hege, Ingrid G', 37:'Ann Christin, David, Signy', 38:'Beathe, Mustafa, Annette',
+    39:'Kristin, Wenche, Mari TH', 41:'Elena, Anna, Karl', 42:'Ken, Wanda, Gro',
+    43:'Marianne, Martine, Ingrid F', 44:'Inger L, Tone, Maria', 45:'Margit, Åse Linn, Benny',
+    46:'Lena, Lill-Anita, Camilla', 47:'Fikret, Haldor, Linda', 48:'Knut, Ingrid S, Martin',
+    49:'Eli Ann, Luwam, Thora', 50:'Sebastian, Iren, Magnar', 51:'Kristine, Mari H, Katarzyna',
+    2:'Hege, Ingrid G, Ann Christin', 3:'David, Signy, Beathe', 4:'Mustafa, Annette, Kristin',
+    5:'Wenche, Mari TH, Elena', 6:'Anna, Karl, Ken', 7:'Wanda, Gro, Marianne',
+    9:'Martine, Ingrid F, Inger L', 10:'Tone, Maria, Margit', 11:'Åse Linn, Benny, Lena',
+    12:'Lill-Anita, Camilla, Fikret', 13:'Haldor, Linda, Knut', 15:'Ingrid S, Martin, Eli Ann',
+    16:'Luwam, Thora, Sebastian', 17:'Iren, Magnar, Kristine', 18:'Mari H, Katarzyna, Hege',
+    19:'Ingrid G, Ann Christin, David', 20:'Signy, Beathe, Mustafa', 21:'Annette, Kristin, Wenche',
+    22:'Mari TH, Elena, Anna', 23:'Karl, Ken, Wanda', 24:'Gro, Marianne, Martine',
+    25:'Ingrid F, Inger L, Tone'
+  };
+  const tv = {
+    33:'Katarzyna, Åse Linn', 34:'Luwam, Wenche', 35:'Marianne, Margot',
+    36:'Inger Lill, Mari Høivik', 37:'Wanda, Ingrid G', 38:'Ken, Thora',
+    39:'Magnar, Maria', 41:'Beathe, Elena', 42:'Gro, Martin',
+    43:'June, David', 44:'Hege, Juliane', 45:'Kristin, Kristine',
+    46:'Annette, Sebastian', 47:'Fikret, Benny', 48:'Katarzyna, Åse Linn',
+    49:'Luwam, Wenche', 50:'Marianne, Margot', 51:'Inger Lill, Mari Høivik',
+    2:'Wanda, Ingrid G', 3:'Ken, Thora', 4:'Magnar, Maria',
+    5:'Beathe, Elena', 6:'Gro, Martin', 7:'June, David',
+    9:'Hege, Juliane', 10:'Kristin, Kristine', 11:'Annette, Sebastian',
+    12:'Fikret, Benny', 13:'Katarzyna, Åse Linn', 15:'Luwam, Wenche',
+    16:'Marianne, Margot', 17:'Inger Lill, Mari Høivik', 18:'Wanda, Ingrid G',
+    19:'Ken, Thora', 20:'Magnar, Maria', 21:'Beathe, Elena',
+    22:'Gro, Martin', 23:'June, David', 24:'Hege, Juliane',
+    25:'Kristin, Kristine'
+  };
+  Object.keys(p.weeks).forEach(wn => {
+    const w = p.weeks[wn];
+    if (!w.isFerie) {
+      w.kjøkkenvakt = kv[wn] || w.kjøkkenvakt;
+      w.trivselsvakt = tv[wn] || w.trivselsvakt;
+    }
+  });
+  p.kjokkenPersons = ['Martin','Eli Ann','Luwam','Thora','Sebastian','Iren','Magnar','Kristine','Mari H',
+    'Katarzyna','Hege','Ingrid G','Ann Christin','David','Signy','Beathe','Mustafa','Annette',
+    'Kristin','Wenche','Mari TH','Elena','Anna','Karl','Ken','Wanda','Gro','Marianne','Martine',
+    'Ingrid F','Inger L','Tone','Maria','Margit','Åse Linn','Benny','Lena','Lill-Anita','Camilla',
+    'Fikret','Haldor','Linda','Knut','Ingrid S'];
+  p.trivselPersons = ['Katarzyna','Åse Linn','Luwam','Wenche','Marianne','Margot','Inger Lill',
+    'Mari Høivik','Wanda','Ingrid G','Ken','Thora','Magnar','Maria','Beathe','Elena','Gro','Martin',
+    'June','David','Hege','Juliane','Kristin','Kristine','Annette','Sebastian','Fikret','Benny'];
+  return p;
+}
+
+function buildPlan2526Test() {
+  const weeks = {};
+  function w(num, month, data) { weeks[num] = {month, isFerie:false, ferieNavn:'', ...data}; }
+  function f(num, month, name) { weeks[num] = {month, isFerie:true, ferieNavn:name, ukesaktuelt:'', kjøkkenvakt:'', trivselsvakt:'', fraværInfo:'', mandag:[], onsdag:[], torsdag:[]}; }
+  function e(text, dept, mt) { return {text, dept:dept||'', meetingType:mt||''}; }
+
+  // ── August ──
+  w(33,'August',{ukesaktuelt:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Planleggingsdager. Skolestart torsdag.',kjøkkenvakt:'Lorem Ipsum og Dolor Sit',trivselsvakt:'',fraværInfo:'',mandag:[],onsdag:[],torsdag:[e('Lorem ipsum: Felles start, personalmøte og kulturkurs 45 min','felles','Personalmøte')]});
+  w(34,'August',{ukesaktuelt:'',kjøkkenvakt:'Adipiscing Elit, Sed Ut og Perspiciatis',trivselsvakt:'Unde Omnis og Iste',fraværInfo:'',mandag:[e('Felles avdelingsmøte: Lorem ipsum tverrfaglig tema','felles','Avdelingsmøte')],onsdag:[e('Workshop: Lorem ipsum consectetur adipiscing','felles','Arrangement')],torsdag:[e('Personalmøte: Lorem ipsum dolor sit amet, budsjett og info','felles','Personalmøte')]});
+  w(35,'August',{ukesaktuelt:'Lorem ipsum dolor tirsdag. Consectetur adipiscing onsdag.',kjøkkenvakt:'Natus Error og Sit Voluptatem',trivselsvakt:'Accusantium og Doloremque',fraværInfo:'',mandag:[e('No.avd: Teamarbeid faglig utvikling','no','Teamarbeid'),e('FOV: Avdelingsmøte','fov','Avdelingsmøte')],onsdag:[e('Samarbeidstid: Lorem ipsum dolor sit amet consectetur','felles','Samarbeidstid')],torsdag:[e('Felles utviklingsarbeid: KI og nye verktøy','felles','Felles utviklingsarbeid')]});
+  w(36,'September',{ukesaktuelt:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error.',kjøkkenvakt:'Laudantium Totam og Rem Aperiam',trivselsvakt:'Eaque Ipsa og Quae',fraværInfo:'',mandag:[e('FOV: Klasselærermøte modul 1-4','fov','Klasselærermøte')],onsdag:[e('Tverrfaglig tema: Lorem ipsum dolor sit amet','felles','Tverrfaglig tema')],torsdag:[e('No.avd: Avdelingsmøte lorem ipsum faglig utvikling','no','Avdelingsmøte')]});
+  w(37,'September',{ukesaktuelt:'Lorem ipsum dolor sit onsdag og torsdag. Consectetur klassebesøk.',kjøkkenvakt:'Ab Illo Inventore og Veritatis',trivselsvakt:'Quasi Architecto og Beatae',fraværInfo:'Lorem ipsum fravær mandag og tirsdag. Consectetur ferie.',mandag:[e('FOV: Klasselærermøter modul 1-3','fov','Klasselærermøte'),e('No.avd: Teamarbeid','no','Teamarbeid')],onsdag:[e('Arrangement: Lorem ipsum dolor sit amet consectetur','felles','Arrangement')],torsdag:[e('Felles utviklingsarbeid: Halvårsplanlegging','felles','Felles utviklingsarbeid')]});
+  w(38,'September',{ukesaktuelt:'',kjøkkenvakt:'Nemo Enim Ipsam og Voluptatem',trivselsvakt:'Quia Voluptas og Sit',fraværInfo:'Lorem ipsum fravær onsdag-fredag.',mandag:[e('No.avd: Teamarbeid og halvårsplaner','no','Teamarbeid')],onsdag:[e('Samarbeidstid: No.avd og FOV lorem ipsum','no','Samarbeidstid')],torsdag:[e('FOV: Avdelingsmøte vurderingsarbeid','fov','Avdelingsmøte'),e('Felles utviklingsarbeid: Lorem ipsum consectetur','felles','Felles utviklingsarbeid')]});
+  w(39,'September',{ukesaktuelt:'Lorem ipsum tirsdag og onsdag consectetur adipiscing. NO kl 0830, FOV 1130-1400.',kjøkkenvakt:'Aspernatur Aut og Odit Fugit',trivselsvakt:'Sed Quia og Consequuntur',fraværInfo:'Lorem ipsum i Oslo HK-dir torsdag.',mandag:[e('Felles foredrag: Lorem ipsum dolor sit amet','felles','Avdelingsmøte')],onsdag:[e('Klubbmøte kl 15-15:45','felles','Klubbmøte')],torsdag:[e('Personalmøte: Info fra ledelsen, HMS lorem ipsum','felles','Personalmøte')]});
+  f(40,'Oktober','HØSTFERIE');
+  w(41,'Oktober',{ukesaktuelt:'Lorem ipsum dolor sit amet: frist fredag.',kjøkkenvakt:'Magni Dolores og Eos Qui',trivselsvakt:'Ratione Sequi og Nesciunt',fraværInfo:'',mandag:[e('FOV: Klasselærermøter og webinar lorem ipsum','fov','Klasselærermøte'),e('No.avd: Teamarbeid','no','Teamarbeid')],onsdag:[e('Klubbmøte kl 15-15:45','felles','Klubbmøte')],torsdag:[e('Felles utviklingsarbeid: Opplæring digitalt 14-15:30','felles','Felles utviklingsarbeid')]});
+  w(42,'Oktober',{ukesaktuelt:'Lorem ipsum fredag. Consectetur adipiscing mandag. Møte i komite onsdag 15/10.',kjøkkenvakt:'Neque Porro og Quisquam Est',trivselsvakt:'Qui Dolorem og Ipsum Quia',fraværInfo:'Lorem ipsum HK-dir onsdag-fredag.',mandag:[e('Navomøte: Lorem ipsum introsamtalen og inkluderingsplanen','felles','Avdelingsmøte')],onsdag:[e('Tverrfaglig tema: KI og lorem ipsum i undervisningen','felles','Tverrfaglig tema')],torsdag:[e('Personalmøte: Fagmøte lorem ipsum dolor sit','felles','Personalmøte')]});
+  w(43,'Oktober',{ukesaktuelt:'Lorem ipsum "consectetur adipiscing elit". Bærekraftig utvikling.',kjøkkenvakt:'Dolor Sit Amet og Consectetur',trivselsvakt:'Adipiscing Elit og Sed',fraværInfo:'Lorem ipsum ferie.',mandag:[e('Fagmøter: Lorem ipsum om pilotering','felles','Avdelingsmøte'),e('FOV: Avdelingsmøte og status','fov','Avdelingsmøte')],onsdag:[e('Arrangement: Lorem ipsum på biblioteket','felles','Arrangement')],torsdag:[e('Personalmøte og lorem ipsum info fra ledelsen','felles','Personalmøte')]});
+  w(44,'Oktober',{ukesaktuelt:'Besøk fra Lorem Ipsum man-ons. Regional konferanse tir-ons. Consectetur beredskapsuke, besøk fredag 31.10.',kjøkkenvakt:'Ut Labore og Dolore Magna',trivselsvakt:'Aliqua Ut og Enim Ad',fraværInfo:'Lorem ipsum ferie man t.o.m. onsdag. Consectetur studier torsdag og fredag.',mandag:[e('Fagmøter: Lorem ipsum og vurderingsarbeid FOV','fov','Avdelingsmøte')],onsdag:[e('Samarbeidstid FOV: Lorem ipsum webinar og consectetur','fov','Samarbeidstid')],torsdag:[e('Avdelingsmøter: Lorem ipsum og arbeidsgruppe 14:45-15:30','felles','Avdelingsmøte')]});
+  w(45,'November',{ukesaktuelt:'Lorem ipsum planleggingsdag fredag. Consectetur skrivetester i alle klasser ila november.',kjøkkenvakt:'Minim Veniam og Quis Nostrud',trivselsvakt:'Exercitation og Ullamco',fraværInfo:'',mandag:[e('Teamarbeid: Fagmøter oppsett prøvemuntlig','felles','Teamarbeid'),e('FOV: Klasselærermøter lorem ipsum','fov','Klasselærermøte')],onsdag:[e('Samarbeidstid: Lorem ipsum dolor sit amet consectetur','felles','Samarbeidstid')],torsdag:[e('Personalmøte: Lorem ipsum budsjettforslag 2026-2029','felles','Personalmøte')]});
+  w(46,'November',{ukesaktuelt:'Lorem ipsum karrieredag torsdag. Consectetur norskkonferansen 12. og 13. nov.',kjøkkenvakt:'Laboris Nisi og Aliquip Ex',trivselsvakt:'Commodo Consequat og Duis',fraværInfo:'Lorem ipsum, consectetur, adipiscing og sed på konferansen onsdag og torsdag.',mandag:[e('No.avd: Avdelingsmøte muntlig vurdering','no','Avdelingsmøte'),e('FOV: Klasselærermøte tentamen','fov','Klasselærermøte')],onsdag:[e('Tverrfaglig tema: Lorem ipsum dolor sit amet consectetur','felles','Tverrfaglig tema')],torsdag:[e('Felles utviklingsarbeid: Lorem ipsum kompetansetreff','felles','Felles utviklingsarbeid'),e('Klubbmøte 15-15:45','felles','Klubbmøte')]});
+  w(47,'November',{ukesaktuelt:'Lorem ipsum prosjektsamling 19. og 20 nov. Administrasjon på kurs 18. og 19.',kjøkkenvakt:'Aute Irure og Dolor In',trivselsvakt:'Reprehenderit Voluptate og Velit',fraværInfo:'',mandag:[e('No.avd: Avdelingsmøte prøvemuntlig','no','Avdelingsmøte')],onsdag:[e('Arrangement: Frivillig workshop lorem ipsum consectetur','felles','Arrangement'),e('Klubbmøte kl 14:45-15:30','felles','Klubbmøte')],torsdag:[e('FOV: Avdelingsmøte tentamen og halvårsvurdering','fov','Avdelingsmøte')]});
+  w(48,'November',{ukesaktuelt:'FOV: Lorem tentamen 24/11, consectetur 25/11, adipiscing 26/11, sed 27/11, ut 28/11.',kjøkkenvakt:'Esse Cillum Dolore og Eu',trivselsvakt:'Fugiat Nulla og Pariatur',fraværInfo:'',mandag:[e('FOV: Klasselærermøte tentamen/vurderingsuke M1/M2','fov','Klasselærermøte'),e('No.avd: Teamarbeid kompetansepluss','no','Teamarbeid')],onsdag:[e('Samarbeidstid: Skriftlig vurdering lorem ipsum consectetur','felles','Samarbeidstid')],torsdag:[e('Felles utviklingsarbeid: Lorem ipsum Språki-arbeidsgruppe','felles','Felles utviklingsarbeid')]});
+  w(49,'Desember',{ukesaktuelt:'Lorem ipsum prøver 1.-5. des.',kjøkkenvakt:'Excepteur Sint Occaecat og Cupidatat',trivselsvakt:'Non Proident og Sunt',fraværInfo:'Lorem ipsum HK-dir onsdag-fredag. Consectetur og dolor Krs onsdag. Sed UiA torsdag-fredag.',mandag:[e('No.avd: Avdelingsmøte og vurdering','no','Avdelingsmøte'),e('FOV: Klasselærermøter','fov','Klasselærermøte')],onsdag:[e('Tverrfaglig tema: Lorem ipsum IKT nettundervisning','felles','Tverrfaglig tema')],torsdag:[e('FOV: Avdelingsmøte og teammøter','fov','Avdelingsmøte')]});
+  w(50,'Desember',{ukesaktuelt:'Lorem ipsum C1-prøven 8. eller 9. des. Consectetur har eksamen hele uka.',kjøkkenvakt:'Culpa Qui Officia og Deserunt',trivselsvakt:'Mollit Anim Id og Est',fraværInfo:'',mandag:[e('No.avd: Teamarbeid og kontaktlæreroppgaver','no','Teamarbeid'),e('FOV: Avdelingsmøte felles vurderingsarbeid','fov','Avdelingsmøte')],onsdag:[e('Samarbeidstid og workshop: Lorem ipsum Outlook','felles','Samarbeidstid')],torsdag:[e('Felles utviklingsarbeid: RYDDEDUGNAD alle ansatte','felles','Felles utviklingsarbeid')]});
+  w(51,'Desember',{ukesaktuelt:'Lorem ipsum julefest med deltagere fredag.',kjøkkenvakt:'Laborum Sed Perspiciatis og Unde',trivselsvakt:'Omnis Iste og Natus',fraværInfo:'',mandag:[e('FOV: Avdelingsmøte juleavslutning','fov','Avdelingsmøte'),e('No: Klasselærermøte og refleksjon i grupper','no','Klasselærermøte')],onsdag:[e('Arrangement: Ajourføring og rydding lorem ipsum','felles','Arrangement')],torsdag:[e('Personalmøte: Juleavslutning med personalet','felles','Personalmøte')]});
+  f(52,'Desember','JULEFERIE');
+  f(1,'Januar','JULEFERIE');
+  w(2,'Januar',{ukesaktuelt:'Lorem ipsum samling 21.01. Consectetur oppstart ny3 22.01.',kjøkkenvakt:'Accusantium Doloremque og Laudantium',trivselsvakt:'Totam Rem og Aperiam',fraværInfo:'',mandag:[e('FOV: Avdelingsmøte og halvårsplaner i Visma','fov','Avdelingsmøte'),e('No.avd: Avdelingsmøte','no','Avdelingsmøte')],onsdag:[e('Samarbeidstid: Lorem ipsum dolor sit amet','felles','Samarbeidstid')],torsdag:[e('Personalmøte kl 14:15-15:00 og Klubbmøte kl 15:00-','felles','Personalmøte')]});
+  w(3,'Januar',{ukesaktuelt:'Lorem ipsum frist halvårsvurdering FOV torsdag.',kjøkkenvakt:'Eaque Ipsa og Quae Ab',trivselsvakt:'Illo Inventore og Veritatis',fraværInfo:'',mandag:[e('FOV: Klasselærermøte halvårsplan','fov','Klasselærermøte'),e('No: Avdelingsmøte','no','Avdelingsmøte')],onsdag:[e('Samarbeidstid: Lorem ipsum arbeidsgruppe 45 min','felles','Samarbeidstid')],torsdag:[e('Felles utviklingsarbeid: Semesterplan og kalender/årshjul','felles','Felles utviklingsarbeid')]});
+  w(4,'Januar',{ukesaktuelt:'',kjøkkenvakt:'Quasi Architecto og Beatae Vitae',trivselsvakt:'Dicta Sunt og Explicabo',fraværInfo:'',mandag:[e('Felles: Lorem ipsum timeplan 15 min','felles','Avdelingsmøte'),e('NO: Teamarbeid halvårsplaner og periodeplaner','no','Teamarbeid')],onsdag:[e('Arrangement: Lorem ipsum for norskavdelingen','no','Arrangement')],torsdag:[e('FOV: Avdelingsmøte halvårsplaner','fov','Avdelingsmøte'),e('No.avd: Teamarbeid','no','Teamarbeid')]});
+  w(5,'Januar',{ukesaktuelt:'Lorem ipsum mandag og torsdag DKS. Fredag: leder heldagssamling.',kjøkkenvakt:'Nemo Enim og Ipsam Voluptatem',trivselsvakt:'Quia Voluptas og Sit Aspernatur',fraværInfo:'',mandag:[e('NO: Klasselærermøte og info','no','Klasselærermøte'),e('FOV: Avdelingsmøte RKV','fov','Avdelingsmøte')],onsdag:[e('Klubbmøte kl 15-','felles','Klubbmøte')],torsdag:[e('Avdelingsmøter lorem ipsum dolor sit amet','felles','Avdelingsmøte')]});
+  w(6,'Februar',{ukesaktuelt:'',kjøkkenvakt:'Aut Odit Aut og Fugit Sed',trivselsvakt:'Quia Consequuntur og Magni',fraværInfo:'',mandag:[e('NAVO-møte: Lorem ipsum dolor sit amet consectetur','felles','Avdelingsmøte')],onsdag:[e('Tverrfaglig tema: Lorem ipsum webinar kl 14:55','felles','Tverrfaglig tema')],torsdag:[e('Personalmøte: Lorem ipsum EMÅ lorem dolor','felles','Personalmøte')]});
+  w(7,'Februar',{ukesaktuelt:'',kjøkkenvakt:'Dolores Eos Qui og Ratione',trivselsvakt:'Sequi Nesciunt og Neque',fraværInfo:'',mandag:[e('NO: Teamarbeid læringssløyfer intro','no','Teamarbeid'),e('FOV: Avdelingsmøte prosjekt vurdering','fov','Avdelingsmøte')],onsdag:[e('Samarbeidstid: KI og IKT workshop lorem ipsum','felles','Samarbeidstid')],torsdag:[e('Felles utviklingsarbeid: Læringssløyfer og erfaringsdeling','felles','Felles utviklingsarbeid')]});
+  f(8,'Februar','VINTERFERIE');
+  w(9,'Februar',{ukesaktuelt:'Lorem ipsum: Påmeldingsfrist eksamen FOV 1. mars. Uke 9-11: Gjennomføring av lorem ipsum i klassene.',kjøkkenvakt:'Porro Quisquam og Est Qui',trivselsvakt:'Dolorem Ipsum og Quia Dolor',fraværInfo:'Lorem ipsum ferie.',mandag:[e('Felles avdelingsmøter: Temauke lorem ipsum og livsmestring','felles','Avdelingsmøte')],onsdag:[e('Klubbmøte kl 15-','felles','Klubbmøte')],torsdag:[e('No: Avdelingsmøte muntlig vurdering','no','Avdelingsmøte'),e('FOV: Klasselærermøte prosjekt vurdering','fov','Klasselærermøte')]});
+  w(10,'Mars',{ukesaktuelt:'Lorem ipsum torsdag: DKS.',kjøkkenvakt:'Sit Amet Consectetur og Adipiscing',trivselsvakt:'Elit Sed Ut og Perspiciatis',fraværInfo:'Lorem ipsum ferie.',mandag:[e('NO: Klasselærermøte vurdering og prøvegjennomføring','no','Klasselærermøte'),e('FOV: Klasselærermøte','fov','Klasselærermøte')],onsdag:[e('Samarbeidstid: Lorem ipsum dolor sit amet consectetur','felles','Samarbeidstid')],torsdag:[e('Felles utviklingsarbeid: KI i skolen kl 10-15','felles','Felles utviklingsarbeid')]});
+  w(11,'Mars',{ukesaktuelt:'Lorem ipsum prøver 9-13. mars.',kjøkkenvakt:'Unde Omnis Iste og Natus Error',trivselsvakt:'Sit Voluptatem og Accusantium',fraværInfo:'',mandag:[e('NO: Teamarbeid og info','no','Teamarbeid'),e('FOV: Klasselærermøte prosjekt vurdering','fov','Klasselærermøte')],onsdag:[e('Tverrfaglig tema: Lorem ipsum IKT og FOV','felles','Tverrfaglig tema')],torsdag:[e('Personalmøte: Lorem ipsum info fra Lena','felles','Personalmøte')]});
+  w(12,'Mars',{ukesaktuelt:'Temauke: Lorem Ipsum og Consectetur. Helsedag fredag.',kjøkkenvakt:'Doloremque Laudantium og Totam',trivselsvakt:'Rem Aperiam Eaque og Ipsa',fraværInfo:'',mandag:[e('Arrangement: Halv planleggingsdag 14:15-19:00 lorem ipsum','felles','Arrangement')],onsdag:[e('Personalmøte: Lorem ipsum om hørsel ved Statped','felles','Personalmøte')],torsdag:[e('No: Avdelingsmøte evaluering og diskusjon','no','Avdelingsmøte'),e('FOV: Avdelingsmøte','fov','Avdelingsmøte')]});
+  w(13,'Mars',{ukesaktuelt:'',kjøkkenvakt:'Quae Ab Illo og Inventore Veritatis',trivselsvakt:'Et Quasi Architecto og Beatae',fraværInfo:'',mandag:[e('FOV: Avdelingsmøte forberedelse tentamen modul 4','fov','Avdelingsmøte'),e('No: Klasselærermøte vurdering/prøvemuntlig','no','Klasselærermøte')],onsdag:[e('Klubbmøte kl 14:30-15:00','felles','Klubbmøte')],torsdag:[e('No.avd: Teamarbeid og fagmøter','no','Teamarbeid'),e('FOV: Avdelingsmøte forberedelse tentamen','fov','Avdelingsmøte')]});
+  f(14,'April','PÅSKE');
+  w(15,'April',{ukesaktuelt:'Lorem ipsum planleggingsdag tirsdag. Consectetur tentamen FOV modul 4. No.avd: Pilotering lese og lytte 8/4-8/5.',kjøkkenvakt:'Vitae Dicta Sunt og Explicabo',trivselsvakt:'Nemo Enim og Ipsam',fraværInfo:'',mandag:[e('Felles: Avdelingsmøte etter påske info','felles','Avdelingsmøte')],onsdag:[e('Samarbeidstid: Lorem ipsum dolor sit amet','felles','Samarbeidstid')],torsdag:[e('No.avd: Avdelingsmøte oppmelding pilotering PAD','no','Avdelingsmøte')]});
+  w(16,'April',{ukesaktuelt:'Lorem ipsum DKS onsdag. Tentamen FOV modul 4.',kjøkkenvakt:'Quasi Architecto Beatae og Vitae',trivselsvakt:'Dicta Sunt og Explicabo',fraværInfo:'',mandag:[e('Felles avdelingsmøter lorem ipsum consectetur','felles','Avdelingsmøte')],onsdag:[e('Arrangement: Foreldremøte kl 13-15 lorem ipsum','felles','Arrangement')],torsdag:[e('FOV: Avdelingsmøte prøvemuntlig Modul 4','fov','Avdelingsmøte'),e('No: Klasselærermøte vurdering','no','Klasselærermøte')]});
+  w(17,'April',{ukesaktuelt:'Lorem ipsum onsdag: Lederne på konferanse 21. og 22. Consectetur UiA torsdag og fredag. FOV-lærerne på eksamenssamling fredag.',kjøkkenvakt:'Elit Sed Ut og Perspiciatis Unde',trivselsvakt:'Omnis Iste og Natus Sit',fraværInfo:'',mandag:[e('Personalmøte 14:15-15:00. KI handlingsplan lorem ipsum','felles','Personalmøte'),e('Klubbmøte kl 15-16','felles','Klubbmøte')],onsdag:[e('Tverrfaglig tema: Lorem ipsum skriftlig vurdering og workshop','felles','Tverrfaglig tema')],torsdag:[e('FOV: Felles utviklingsarbeid prøvemuntlig Modul 4','fov','Felles utviklingsarbeid')]});
+  w(18,'April',{ukesaktuelt:'',kjøkkenvakt:'Voluptatem Accusantium og Doloremque',trivselsvakt:'Laudantium Totam og Rem',fraværInfo:'',mandag:[e('No.avd: Klasselærermøte prøvemuntlig','no','Klasselærermøte'),e('FOV: Klasselærermøte','fov','Klasselærermøte')],onsdag:[e('Samarbeidstid: Lorem ipsum consectetur','felles','Samarbeidstid')],torsdag:[e('No.avd: Avdelingsmøte prøvemuntlig','no','Avdelingsmøte'),e('FOV: Avdelingsmøte','fov','Avdelingsmøte')]});
+  w(19,'Mai',{ukesaktuelt:'Lorem ipsum ferie: 4. og 5. mai.',kjøkkenvakt:'Aperiam Eaque Ipsa og Quae',trivselsvakt:'Ab Illo og Inventore',fraværInfo:'',mandag:[e('FOV og No.avd: Felles avdelingsmøte om Lorem ipsum','felles','Avdelingsmøte')],onsdag:[e('Tverrfaglig tema: Lorem ipsum consectetur adipiscing','felles','Tverrfaglig tema')],torsdag:[e('FOV: Avdelingsmøte fagrapport modul 4','fov','Avdelingsmøte'),e('NO: Teamarbeid 30 min info','no','Teamarbeid')]});
+  w(20,'Mai',{ukesaktuelt:'Lorem ipsum trekk eksamen FOV 09:00 13. mai.',kjøkkenvakt:'Veritatis Et Quasi og Architecto',trivselsvakt:'Beatae Vitae og Dicta',fraværInfo:'',mandag:[e('FOV: Klasselærermøte tentamen modul 1-3','fov','Klasselærermøte'),e('No.avd: Avdelingsmøte skriftlig vurdering','no','Avdelingsmøte')],onsdag:[e('Samarbeidstid: Lorem ipsum tema årsvurdering','felles','Samarbeidstid')],torsdag:[e('Arrangement: HIMMELSPRETT - lorem ipsum felles','felles','Arrangement')]});
+  w(21,'Mai',{ukesaktuelt:'Lorem ipsum engelskeksamen 20. mai, norskeksamen 21. mai. Frist fagrapport M4 18. mai.',kjøkkenvakt:'Sunt Explicabo Nemo og Enim',trivselsvakt:'Ipsam Voluptatem og Quia',fraværInfo:'',mandag:[e('FOV: Avdelingsmøte tentamen modul 1-3','fov','Avdelingsmøte'),e('No.avd: Teamarbeid og eget arbeid','no','Teamarbeid')],onsdag:[e('Arrangement: Planlegging sommerfest og lorem ipsum','felles','Arrangement')],torsdag:[e('FOV: Avdelingsmøte forberedelse tentamen','fov','Avdelingsmøte'),e('No: Klasselærermøte vurdering','no','Klasselærermøte')]});
+  w(22,'Mai',{ukesaktuelt:'Lorem ipsum matematikkeksamen 26. mai. Consectetur prøver tirsdag-torsdag.',kjøkkenvakt:'Dolor Sit Amet og Consectetur',trivselsvakt:'Adipiscing Elit og Sed Ut',fraværInfo:'',mandag:[e('PINSE - Felles avdelingsmøte info','felles','Avdelingsmøte')],onsdag:[e('Klubbmøte kl 15','felles','Klubbmøte')],torsdag:[e('Personalmøte: Lorem ipsum prøver og kommisjon','felles','Personalmøte')]});
+  w(23,'Juni',{ukesaktuelt:'Tentamen FOV modul 1-3. Lorem ipsum testing til FOV. Frist standpunkt 5.06.',kjøkkenvakt:'Perspiciatis Unde og Omnis Natus',trivselsvakt:'Error Sit og Voluptatem',fraværInfo:'',mandag:[e('FOV: Klasselærermøte og evaluering lorem ipsum','fov','Klasselærermøte'),e('No.avd: Avdelingsmøte kontaktlærers oppgaver','no','Avdelingsmøte')],onsdag:[e('Arrangement: NAVO lorem ipsum consectetur','felles','Arrangement')],torsdag:[e('Felles utviklingsarbeid: KI i skolen 14:15-15:30','felles','Felles utviklingsarbeid')]});
+  w(24,'Juni',{ukesaktuelt:'Lorem ipsum eksamen FOV 8-10. juni. Frist terminkarakter M1-3 12.06.',kjøkkenvakt:'Accusantium Doloremque og Laudantium',trivselsvakt:'Aperiam Eaque og Ipsa Quae',fraværInfo:'',mandag:[e('FOV: Avdelingsmøte og vurdering','fov','Avdelingsmøte'),e('NO: Teamarbeid','no','Teamarbeid')],onsdag:[e('Samarbeidstid: Lorem ipsum eksamen modul 4','felles','Samarbeidstid')],torsdag:[e('Arrangement: Halv planleggingsdag 14:15-19:00 lorem ipsum','felles','Arrangement')]});
+  w(25,'Juni',{ukesaktuelt:'Lorem ipsum sommerfest deltagere fredag.',kjøkkenvakt:'Illo Inventore og Veritatis Quasi',trivselsvakt:'Architecto Beatae og Vitae Dicta',fraværInfo:'',mandag:[e('Teamarbeid: Deling og lagring i Teams lorem ipsum','felles','Teamarbeid')],onsdag:[e('Samarbeidstid: Rydding og ajourføring alle ansatte','felles','Samarbeidstid')],torsdag:[e('Personalmøte: Sommeravslutning 13:30-15:30 lorem ipsum','felles','Personalmøte')]});
+
+  const kjokkenPersons = ['Lorem','Ipsum','Dolor','Sit','Amet','Consectetur','Adipiscing','Elit','Sed','Ut','Perspiciatis'];
+  const trivselPersons = ['Omnis','Iste','Natus','Error','Voluptatem','Accusantium','Doloremque'];
+  return {name:'Semesterplan 2526 TEST', weeks, kjokkenPersons, trivselPersons};
+}
+
+function buildPlanVeileder() {
+  // Oppskrift og veileder: Viser hvordan semesterplanen fylles ut korrekt.
+  // Alle kategorier, alle møtetyper og ulike scenarioer er representert.
+  const weeks = {};
+  function w(num, month, data) { weeks[num] = {month, isFerie:false, ferieNavn:'', ...data}; }
+  function f(num, month, name) { weeks[num] = {month, isFerie:true, ferieNavn:name, ukesaktuelt:'', kjøkkenvakt:'', trivselsvakt:'', fraværInfo:'', mandag:[], onsdag:[], torsdag:[]}; }
+  function e(text, dept, mt) { return {text, dept:dept||'felles', meetingType:mt||''}; }
+  function u(cats, beskr) { return {categories: cats, beskrivelse: beskr}; }
+
+  // ── August ──────────────────────────────────────────────────────────────────
+  // Uke 33: Kategori «Planleggingsdag» + Personalmøte torsdag
+  // Ukesaktuelt beskrivelse: Skriv de viktigste datoene og praktisk info for uka.
+  w(33,'August',{
+    ukesaktuelt: u(['Planleggingsdag'], 'Planleggingsdager mandag og tirsdag. Skolestart for deltakere torsdag. Her skriver du de viktigste hendelsene for uka.'),
+    kjøkkenvakt:'Martin, Eli Ann, Luwam', trivselsvakt:'Katarzyna, Åse Linn',
+    fraværInfo:'Eksempel på fravær: Ola Nordmann i permisjon mandag og tirsdag.',
+    mandag:[], onsdag:[],
+    torsdag:[e('Personalmøte med praktisk info og velkomst for høstsemesteret','felles','Personalmøte')]
+  });
+
+  // Uke 34: Én møte per dag – typisk uke uten spesielle hendelser
+  w(34,'August',{
+    ukesaktuelt: u([], 'Skriv her hva som er aktuelt denne uka – tema, arrangement eller viktig informasjon til alle.'),
+    kjøkkenvakt:'Thora, Sebastian, Iren', trivselsvakt:'Luwam, Wenche',
+    fraværInfo:'',
+    mandag:[e('Halvårsplanlegging og faglig samarbeid','fov','Avdelingsmøte')],
+    onsdag:[e('Workshop: Visma timeplan og rutiner','felles','Arrangement')],
+    torsdag:[e('Resultater og budsjettstatus for høstsemesteret','felles','Personalmøte')]
+  });
+
+  // Uke 35: Kategori «DKS» + viser bruk av Teamarbeid og Felles utviklingsarbeid
+  w(35,'August',{
+    ukesaktuelt: u(['DKS'], 'DKS-besøk i klassene onsdag og torsdag. Informer deltakerne på forhånd.'),
+    kjøkkenvakt:'Magnar, Kristine, Mari H', trivselsvakt:'Marianne, Margot',
+    fraværInfo:'',
+    mandag:[e('Presentasjon av faglig utviklingsarbeid og erfaringsdeling','no','Teamarbeid')],
+    onsdag:[e('Faglig samarbeid og gjennomgang av halvårsplaner','felles','Samarbeidstid')],
+    torsdag:[e('Nye digitale verktøy og ressurser i undervisningen','felles','Felles utviklingsarbeid')]
+  });
+
+  // ── September ────────────────────────────────────────────────────────────────
+  // Uke 36: Tverrfaglig tema – viser bruk av alle tre dager med ulike typer
+  w(36,'September',{
+    ukesaktuelt: u([], 'Her kan du skrive om aktuelle samfunnstema som er relevante for undervisningen denne uka, f.eks. demokrati, bærekraft eller helse.'),
+    kjøkkenvakt:'Katarzyna, Hege, Ingrid G', trivselsvakt:'Inger Lill, Mari Høivik',
+    fraværInfo:'',
+    mandag:[e('Halvårsplanlegging og faglig samarbeid','fov','Klasselærermøte')],
+    onsdag:[e('Tverrfaglig arbeid: Demokrati og medborgerskap','felles','Tverrfaglig tema')],
+    torsdag:[e('Presentasjon av årshjul og kurspakker','no','Avdelingsmøte')]
+  });
+
+  // Uke 37: Kategori «Samling» + fraværInfo eksempel med ledere bortreist
+  w(37,'September',{
+    ukesaktuelt: u(['Samling'], 'Ledersamling onsdag og torsdag. Ledelsen er borte disse dagene.'),
+    kjøkkenvakt:'Ann Christin, David, Signy', trivselsvakt:'Wanda, Ingrid G',
+    fraværInfo:'Lena og Haldor på ledersamling onsdag og torsdag.',
+    mandag:[e('Klasselærermøter modul 1–3','fov','Klasselærermøte'), e('Faglig samarbeid og stasjonsrommet','no','Teamarbeid')],
+    onsdag:[e('Fysisk aktivitet og arrangement for deltakere','felles','Arrangement')],
+    torsdag:[e('Halvårsplanlegging for vårprogrammet','felles','Felles utviklingsarbeid')]
+  });
+
+  // Uke 38: Tom ukesaktuelt – viser at feltet kan stå tomt
+  w(38,'September',{
+    ukesaktuelt: u([], ''),
+    kjøkkenvakt:'Beathe, Mustafa, Annette', trivselsvakt:'Ken, Thora',
+    fraværInfo:'Haldor fravær onsdag–fredag.',
+    mandag:[e('Status halvårsplaner og vurderingsarbeid','fov','Avdelingsmøte'), e('Faglig samarbeid i team','no','Teamarbeid')],
+    onsdag:[e('Faglig samarbeid og erfaringsdeling','no','Samarbeidstid')],
+    torsdag:[e('Opplæring i nytt digitalt verktøy for alle ansatte','felles','Felles utviklingsarbeid')]
+  });
+
+  // Uke 39: Besøk + to møter torsdag (viser at to møter er mulig)
+  w(39,'September',{
+    ukesaktuelt: u(['Besøk'], 'Besøk av Nullvisjonen tirsdag og onsdag – trafikksikkerhet for alle klasser. NO kl. 08.30, FOV kl. 11.30–14.00.'),
+    kjøkkenvakt:'Kristin, Wenche, Mari TH', trivselsvakt:'Magnar, Maria',
+    fraværInfo:'Margit i Oslo, HK-direktøren, torsdag.',
+    mandag:[e('Felles foredrag og workshop for alle ansatte','felles','Avdelingsmøte')],
+    onsdag:[e('Ressursteam og bærekraftig utvikling','felles','Tverrfaglig tema')],
+    torsdag:[e('Informasjon fra ledelsen og HMS-gjennomgang','felles','Personalmøte')]
+  });
+
+  f(40,'Oktober','HØSTFERIE');
+
+  // ── Oktober ──────────────────────────────────────────────────────────────────
+  // Uke 41: Kategori «Frist / påmelding» + Klubbmøte og Felles utviklingsarbeid
+  w(41,'Oktober',{
+    ukesaktuelt: u(['Frist / påmelding'], 'Frist for innlevering av periodeplaner fredag. Husk å melde inn eventuelle endringer til administrasjonen.'),
+    kjøkkenvakt:'Elena, Anna, Karl', trivselsvakt:'Beathe, Elena',
+    fraværInfo:'',
+    mandag:[e('Klasselærermøter og webinar om læringsverktøy','fov','Klasselærermøte'), e('Om muntlig vurdering og faglig samarbeid','no','Teamarbeid')],
+    onsdag:[e('Klubbmøte','felles','Klubbmøte')],
+    torsdag:[e('Opplæring i digitalt læringsverktøy for alle','felles','Felles utviklingsarbeid')]
+  });
+
+  // Uke 42: Kategori «Besøk» – viser kort og presis ukesaktuelt
+  w(42,'Oktober',{
+    ukesaktuelt: u(['Besøk'], 'Besøk fra Nav-kontoret mandag – samarbeid om inkludering og arbeidsrettede tiltak.'),
+    kjøkkenvakt:'Ken, Wanda, Gro', trivselsvakt:'Gro, Martin',
+    fraværInfo:'Margit på HK-direktøren onsdag–fredag.',
+    mandag:[e('Samarbeid med Nav om inkluderingsplanen','felles','Avdelingsmøte')],
+    onsdag:[e('KI i undervisningen – erfaringsdeling og faglig diskusjon','felles','Tverrfaglig tema')],
+    torsdag:[e('Fagmøte om digitale verktøy i norskopplæringen','felles','Personalmøte')]
+  });
+
+  // Uke 43: To kategorier – «Feiring» + «Arrangement for deltakere»
+  w(43,'Oktober',{
+    ukesaktuelt: u(['Feiring','Arrangement for deltakere'], 'Jubileum – «Folk møter folk» fredag. Bærekraftig utvikling er ukens tverrfaglige tema.'),
+    kjøkkenvakt:'Marianne, Martine, Ingrid F', trivselsvakt:'June, David',
+    fraværInfo:'Siv ferie.',
+    mandag:[e('Om pilotering og registrering i PAD','fov','Avdelingsmøte'), e('Faglig samarbeid','no','Avdelingsmøte')],
+    onsdag:[e('Jubileumsarrangement på biblioteket','felles','Arrangement')],
+    torsdag:[e('Informasjon og oppsummering fra uka','felles','Personalmøte')]
+  });
+
+  // Uke 44: «Besøk» + «Samling» + eksempel på langt fraværInfo
+  w(44,'Oktober',{
+    ukesaktuelt: u(['Besøk','Samling'], 'Besøk fra søsterskole mandag–onsdag. Regional integreringskonferanse tirsdag og onsdag.'),
+    kjøkkenvakt:'Inger L, Tone, Maria', trivselsvakt:'Hege, Juliane',
+    fraværInfo:'Siv ferie mandag t.o.m. onsdag. Linda på studier torsdag og fredag.',
+    mandag:[e('Fagmøter: Utarbeiding av skrivetester og muntlige tester','fov','Avdelingsmøte')],
+    onsdag:[e('Webinar om dysleksi og tilrettelegging','felles','Samarbeidstid')],
+    torsdag:[e('Faglig samarbeid og arbeidsgruppe','felles','Avdelingsmøte')]
+  });
+
+  // ── November ─────────────────────────────────────────────────────────────────
+  // Uke 45: «Planleggingsdag» + «Prøver» – to kategorier samtidig
+  w(45,'November',{
+    ukesaktuelt: u(['Planleggingsdag','Prøver'], 'Planleggingsdag for alle fredag 7. november. Skrivetester gjennomføres i alle klasser i løpet av november.'),
+    kjøkkenvakt:'Margit, Åse Linn, Benny', trivselsvakt:'Kristin, Kristine',
+    fraværInfo:'',
+    mandag:[e('Fagmøter og oppsett av prøvemuntlig','felles','Teamarbeid'), e('Klasselærermøter','fov','Klasselærermøte')],
+    onsdag:[e('Webinar kl. 12–15: Digitalt verktøy for tilpasset opplæring','felles','Samarbeidstid')],
+    torsdag:[e('Kommunedirektørens budsjettforslag – presentasjon og gjennomgang','felles','Personalmøte')]
+  });
+
+  // Uke 46: «Samling» + Klubbmøte torsdag kombinert med Felles utviklingsarbeid
+  w(46,'November',{
+    ukesaktuelt: u(['Samling'], 'Karrieredag for deltakere torsdag 13. november. Norskkonferansen onsdag og torsdag.'),
+    kjøkkenvakt:'Lena, Lill-Anita, Camilla', trivselsvakt:'Annette, Sebastian',
+    fraværInfo:'Siv, Linda, Margit og Haldor på Norskkonferansen onsdag og torsdag.',
+    mandag:[e('Muntlig vurdering – faglig samarbeid og gjennomgang','no','Avdelingsmøte'), e('Tentamen og vurdering','fov','Klasselærermøte')],
+    onsdag:[e('Tverrfaglig arbeid: Karriere og framtidsplaner for deltakere','felles','Tverrfaglig tema')],
+    torsdag:[e('Kompetansetreff med Nav og samarbeidspartnere','felles','Felles utviklingsarbeid'), e('Klubbmøte','felles','Klubbmøte')]
+  });
+
+  // Uke 47: «Muntlig prøve» + kun én møte per dag
+  w(47,'November',{
+    ukesaktuelt: u(['Muntlig prøve'], 'Prøvemuntlig for alle klasser på norskavdelingen denne uka.'),
+    kjøkkenvakt:'Fikret, Haldor, Linda', trivselsvakt:'Fikret, Benny',
+    fraværInfo:'',
+    mandag:[e('Prøvemuntlig','no','Avdelingsmøte')],
+    onsdag:[e('Frivillig workshop: Læringsverktøy – tips og praktisk hjelp','felles','Arrangement'), e('Møte i planleggingskomité','felles','Klubbmøte')],
+    torsdag:[e('Tentamen og halvårsvurdering','fov','Avdelingsmøte')]
+  });
+
+  // Uke 48: «Tentamen» – tentamensuke
+  w(48,'November',{
+    ukesaktuelt: u(['Tentamen'], 'Tentamensuke FOV: norsk 24/11, matematikk 26/11, engelsk 28/11. Se detaljert plan.'),
+    kjøkkenvakt:'Knut, Ingrid S, Martin', trivselsvakt:'Katarzyna, Åse Linn',
+    fraværInfo:'',
+    mandag:[e('Tentamen og vurdering modul 1 og 2','fov','Klasselærermøte'), e('Møte med kompetansepluss-lærere','no','Teamarbeid')],
+    onsdag:[e('Ressursteammøte','felles','Samarbeidstid')],
+    torsdag:[e('Faglig samarbeid og Språki-arbeidsgruppe','felles','Felles utviklingsarbeid')]
+  });
+
+  // ── Desember ─────────────────────────────────────────────────────────────────
+  // Uke 49: «Prøver» – norskprøver
+  w(49,'Desember',{
+    ukesaktuelt: u(['Prøver'], 'Norskprøver gjennomføres 1.–5. desember. Noen lærere er i kommisjon disse dagene.'),
+    kjøkkenvakt:'Eli Ann, Luwam, Thora', trivselsvakt:'Luwam, Wenche',
+    fraværInfo:'Margit på HK-direktøren onsdag–fredag. Haldor og Linda til Kristiansand onsdag.',
+    mandag:[e('Avdelingsmøte og status mot slutten av semesteret','no','Avdelingsmøte'), e('Klasselærermøter','fov','Klasselærermøte')],
+    onsdag:[e('Tverrfaglig tema: Norskprøver – roller, ansvar og erfaringer','felles','Tverrfaglig tema')],
+    torsdag:[e('Avdelingsmøte og faglig oppsummering','fov','Avdelingsmøte')]
+  });
+
+  // Uke 50: «Prøver» + Ryddedugnad
+  w(50,'Desember',{
+    ukesaktuelt: u(['Prøver'], 'C1-prøven gjennomføres 8. eller 9. desember.'),
+    kjøkkenvakt:'Sebastian, Iren, Magnar', trivselsvakt:'Marianne, Margot',
+    fraværInfo:'',
+    mandag:[e('Faglig samarbeid: Visma og kontaktlæreroppgaver','no','Teamarbeid'), e('Felles vurderingsarbeid i grupper','fov','Avdelingsmøte')],
+    onsdag:[e('Faglig samarbeid og workshop: Arbeidsplan og verktøy','felles','Samarbeidstid')],
+    torsdag:[e('Ryddedugnad – alle ansatte deltar','felles','Felles utviklingsarbeid')]
+  });
+
+  // Uke 51: «Feiring» + «Arrangement for deltakere» – avslutning av semesteret
+  w(51,'Desember',{
+    ukesaktuelt: u(['Feiring','Arrangement for deltakere'], 'Julefest med deltakere fredag 19. desember. Juleavslutning for personalet torsdag.'),
+    kjøkkenvakt:'Kristine, Mari H, Katarzyna', trivselsvakt:'Inger Lill, Mari Høivik',
+    fraværInfo:'',
+    mandag:[e('Avdelingsmøte med juleavslutning','fov','Avdelingsmøte'), e('Refleksjon og erfaringsdeling i grupper','no','Klasselærermøte')],
+    onsdag:[e('Ajourføring, opprydding og forberedelse til jul','felles','Arrangement')],
+    torsdag:[e('Juleavslutning og oppsummering av høstsemesteret','felles','Personalmøte')]
+  });
+
+  f(52,'Desember','JULEFERIE');
+  f(1,'Januar','JULEFERIE');
+
+  // ── Januar ───────────────────────────────────────────────────────────────────
+  // Uke 2: «Frist / påmelding» – våroppstart
+  w(2,'Januar',{
+    ukesaktuelt: u(['Frist / påmelding'], 'Oppstart nytt semester. Påmelding til faglige samlinger innen fredag 24. januar. Ny klasse starter onsdag 22. januar.'),
+    kjøkkenvakt:'Hege, Ingrid G, Ann Christin', trivselsvakt:'Wanda, Ingrid G',
+    fraværInfo:'',
+    mandag:[e('Halvårsplaner og vurdering – gjennomgang i Visma','fov','Avdelingsmøte'), e('Avdelingsmøte etter juleferien','no','Avdelingsmøte')],
+    onsdag:[e('Faglig samarbeid og gjennomgang av planer for vårsemesteret','felles','Samarbeidstid')],
+    torsdag:[e('Informasjon om vårprogrammet og semesterplan','felles','Personalmøte'), e('Klubbmøte','felles','Klubbmøte')]
+  });
+
+  // Uke 3: «Frist / påmelding» – halvårsvurdering
+  w(3,'Januar',{
+    ukesaktuelt: u(['Frist / påmelding'], 'Frist for halvårsvurdering FOV torsdag 15. januar. Husk å legge inn i Visma før fristen.'),
+    kjøkkenvakt:'David, Signy, Beathe', trivselsvakt:'Ken, Thora',
+    fraværInfo:'',
+    mandag:[e('Klasselærermøte og halvårsplanlegging','fov','Klasselærermøte'), e('Avdelingsmøte og halvårsplan','no','Avdelingsmøte')],
+    onsdag:[e('Arbeidsgruppe – veiledning og faglig samarbeid 45 min','felles','Samarbeidstid')],
+    torsdag:[e('Semesterplan og kalender for hele vårsemesteret','felles','Felles utviklingsarbeid')]
+  });
+
+  // Uke 4: Tom ukesaktuelt – rutineuke uten spesielle hendelser
+  w(4,'Januar',{
+    ukesaktuelt: u([], ''),
+    kjøkkenvakt:'Mustafa, Annette, Kristin', trivselsvakt:'Magnar, Maria',
+    fraværInfo:'',
+    mandag:[e('Visma timeplan – 15 minutters gjennomgang','felles','Avdelingsmøte'), e('Halvårsplaner og periodeplaner','no','Teamarbeid')],
+    onsdag:[e('Arbeidsrettet norskopplæring – faglig arrangement','no','Arrangement')],
+    torsdag:[e('Halvårsplaner – faglig gjennomgang','fov','Avdelingsmøte'), e('Faglig samarbeid i team','no','Teamarbeid')]
+  });
+
+  // Uke 5: «DKS» + Klubbmøte
+  w(5,'Januar',{
+    ukesaktuelt: u(['DKS'], 'DKS-besøk i klassene mandag og torsdag. Ledermøte fredag – ledelsen er bortreist.'),
+    kjøkkenvakt:'Wenche, Mari TH, Elena', trivselsvakt:'Beathe, Elena',
+    fraværInfo:'',
+    mandag:[e('Klasselærermøte og info til ansatte','no','Klasselærermøte'), e('RKV og faglig planlegging','fov','Avdelingsmøte')],
+    onsdag:[e('Klubbmøte','felles','Klubbmøte')],
+    torsdag:[e('Avdelingsmøter og faglig samarbeid','felles','Avdelingsmøte')]
+  });
+
+  // ── Februar ──────────────────────────────────────────────────────────────────
+  // Uke 6: Tverrfaglig tema – viser faglig bredde
+  w(6,'Februar',{
+    ukesaktuelt: u([], ''),
+    kjøkkenvakt:'Anna, Karl, Ken', trivselsvakt:'Gro, Martin',
+    fraværInfo:'',
+    mandag:[e('NAVO-møte – samarbeid om overganger og inkludering','felles','Avdelingsmøte')],
+    onsdag:[e('Tverrfaglig tema: Arbeid og utdanning – webinar og faglig oppdatering','felles','Tverrfaglig tema')],
+    torsdag:[e('Personalmøte: Mål, resultater og veien videre','felles','Personalmøte')]
+  });
+
+  // Uke 7: Teamarbeid + Felles utviklingsarbeid – faglig utvikling uke
+  w(7,'Februar',{
+    ukesaktuelt: u([], ''),
+    kjøkkenvakt:'Wanda, Gro, Marianne', trivselsvakt:'June, David',
+    fraværInfo:'',
+    mandag:[e('Læringssløyfer – introduksjon og faglig opplæring','no','Teamarbeid'), e('Prosjektvurdering og læringssløyfer','fov','Avdelingsmøte')],
+    onsdag:[e('KI og IKT-workshop: Nye digitale verktøy i undervisningen','felles','Samarbeidstid')],
+    torsdag:[e('Erfaringsdeling og faglig utvikling: Læringssløyfer i praksis','felles','Felles utviklingsarbeid')]
+  });
+
+  f(8,'Februar','VINTERFERIE');
+
+  // Uke 9: «Frist / påmelding» + Klasselærermøte – etter vinterferie
+  w(9,'Februar',{
+    ukesaktuelt: u(['Frist / påmelding'], 'Påmeldingsfrist eksamen FOV 1. mars. Uke 9–11: Gjennomføring av læringssløyfer i klassene.'),
+    kjøkkenvakt:'Martine, Ingrid F, Inger L', trivselsvakt:'Hege, Juliane',
+    fraværInfo:'Siv ferie.',
+    mandag:[e('Temauke: Folkehelse og livsmestring – felles oppstart for alle','felles','Avdelingsmøte')],
+    onsdag:[e('Klubbmøte','felles','Klubbmøte')],
+    torsdag:[e('Muntlig vurdering og gjennomgang','no','Avdelingsmøte'), e('Prosjektvurdering og læringssløyfer','fov','Klasselærermøte')]
+  });
+
+  // ── Mars ─────────────────────────────────────────────────────────────────────
+  // Uke 10: «DKS» + Felles utviklingsarbeid
+  w(10,'Mars',{
+    ukesaktuelt: u(['DKS'], 'DKS-besøk torsdag.'),
+    kjøkkenvakt:'Tone, Maria, Margit', trivselsvakt:'Kristin, Kristine',
+    fraværInfo:'Siv ferie.',
+    mandag:[e('Vurdering og prøvegjennomføring, muntlig','no','Klasselærermøte'), e('Klasselærermøte og faglig planlegging','fov','Klasselærermøte')],
+    onsdag:[e('Faglig samarbeid og planlegging for tentamensperioden','felles','Samarbeidstid')],
+    torsdag:[e('KI i skolen – ledersporet kl. 10–15','felles','Felles utviklingsarbeid')]
+  });
+
+  // Uke 11: «Prøver» – norskprøver vår
+  w(11,'Mars',{
+    ukesaktuelt: u(['Prøver'], 'Norskprøver 9.–13. mars. Noen lærere er i kommisjon disse dagene. Se egen plan.'),
+    kjøkkenvakt:'Åse Linn, Benny, Lena', trivselsvakt:'Annette, Sebastian',
+    fraværInfo:'',
+    mandag:[e('Info til ansatte om norskprøver og kommisjon','no','Teamarbeid'), e('Prosjektvurdering og læringssløyfer','fov','Klasselærermøte')],
+    onsdag:[e('Tverrfaglig tema: Norskprøver – roller, ansvar og erfaringer','felles','Tverrfaglig tema')],
+    torsdag:[e('Informasjon og faglig oppsummering av norskprøveuka','felles','Personalmøte')]
+  });
+
+  // Uke 12: «Arrangement for deltakere» – temauke
+  w(12,'Mars',{
+    ukesaktuelt: u(['Arrangement for deltakere'], 'Temauke: Folkehelse og livsmestring. Helsedag for alle deltakere fredag 20. mars.'),
+    kjøkkenvakt:'Lill-Anita, Camilla, Fikret', trivselsvakt:'Fikret, Benny',
+    fraværInfo:'',
+    mandag:[e('Halv planleggingsdag 14.15–19.00: Erfaringsutveksling og faglig utvikling','felles','Arrangement')],
+    onsdag:[e('Foredrag om hørsel og tilrettelegging – for alle lærere','felles','Personalmøte')],
+    torsdag:[e('Evaluering og faglig diskusjon','no','Avdelingsmøte'), e('Avdelingsmøte','fov','Avdelingsmøte')]
+  });
+
+  // Uke 13: To møter mandag + to møter torsdag – viser at dette er mulig
+  w(13,'Mars',{
+    ukesaktuelt: u([], ''),
+    kjøkkenvakt:'Haldor, Linda, Knut', trivselsvakt:'Katarzyna, Åse Linn',
+    fraværInfo:'',
+    mandag:[e('Forberedelse til tentamen modul 4','fov','Avdelingsmøte'), e('Klasselærermøte: Vurdering og prøvemuntlig','no','Klasselærermøte')],
+    onsdag:[e('Klubbmøte','felles','Klubbmøte')],
+    torsdag:[e('Faglig samarbeid i team','no','Teamarbeid'), e('Forberedelse til tentamen modul 4','fov','Avdelingsmøte')]
+  });
+
+  f(14,'April','PÅSKE');
+
+  // ── April ────────────────────────────────────────────────────────────────────
+  // Uke 15: «Planleggingsdag» + «Pilotering»
+  w(15,'April',{
+    ukesaktuelt: u(['Planleggingsdag','Pilotering'], 'Planleggingsdag tirsdag 7. april. Pilotering av lese- og lytteprøver starter 8. april t.o.m. 8. mai.'),
+    kjøkkenvakt:'Ingrid S, Martin, Eli Ann', trivselsvakt:'Luwam, Wenche',
+    fraværInfo:'',
+    mandag:[e('Informasjon og faglig planlegging etter påskeferien','felles','Avdelingsmøte')],
+    onsdag:[e('Faglig samarbeid og gjennomgang av piloteringen','felles','Samarbeidstid')],
+    torsdag:[e('Oppmelding til pilotering i PAD','no','Avdelingsmøte')]
+  });
+
+  // Uke 16: «Tentamen» + «DKS»
+  w(16,'April',{
+    ukesaktuelt: u(['Tentamen','DKS'], 'DKS-besøk onsdag. Tentamen FOV modul 4 gjennomføres denne uka.'),
+    kjøkkenvakt:'Luwam, Thora, Sebastian', trivselsvakt:'Marianne, Margot',
+    fraværInfo:'',
+    mandag:[e('Avdelingsmøter – faglig informasjon og planlegging','felles','Avdelingsmøte')],
+    onsdag:[e('Foreldremøte kl. 13.00–15.00 (politi, SLT m.m.)','felles','Arrangement')],
+    torsdag:[e('Forberedelse til prøvemuntlig modul 4','fov','Avdelingsmøte'), e('Klasselærermøte: Vurdering og prøvemuntlig','no','Klasselærermøte')]
+  });
+
+  // Uke 17: «Ledersamling» + «Samling» – to kategorier, Klubbmøte mandag
+  w(17,'April',{
+    ukesaktuelt: u(['Ledersamling','Samling'], 'Lederne på HK-direktørens lederkonferanse tirsdag og onsdag. FOV-lærerne på eksamenssamling i Lillesand fredag.'),
+    kjøkkenvakt:'Iren, Magnar, Kristine', trivselsvakt:'Inger Lill, Mari Høivik',
+    fraværInfo:'Linda på UiA torsdag og fredag. FOV-lærerne på eksamenssamling fredag.',
+    mandag:[e('KI-handlingsplan – presentasjon og drøfting for alle','felles','Personalmøte'), e('Klubbmøte','felles','Klubbmøte')],
+    onsdag:[e('Tverrfaglig tema: Skriftlig vurdering og skrivetester','felles','Tverrfaglig tema')],
+    torsdag:[e('Forberedelse til prøvemuntlig modul 4','fov','Felles utviklingsarbeid')]
+  });
+
+  // Uke 18: «Muntlig prøve» – prøvemuntlig begge avdelinger
+  w(18,'April',{
+    ukesaktuelt: u(['Muntlig prøve'], 'Prøvemuntlig for norskavdelingen og FOV modul 4 denne uka. Se egen timeplan.'),
+    kjøkkenvakt:'Mari H, Katarzyna, Hege', trivselsvakt:'Wanda, Ingrid G',
+    fraværInfo:'',
+    mandag:[e('Prøvemuntlig og klasselærermøte','no','Klasselærermøte'), e('Klasselærermøte og prøvemuntlig modul 4','fov','Klasselærermøte')],
+    onsdag:[e('Faglig samarbeid og erfaringsdeling','felles','Samarbeidstid')],
+    torsdag:[e('Prøvemuntlig og vurdering','no','Avdelingsmøte'), e('Avdelingsmøte og vurdering modul 4','fov','Avdelingsmøte')]
+  });
+
+  // ── Mai ──────────────────────────────────────────────────────────────────────
+  // Uke 19: Enkel uke – viser at ukesaktuelt kan inneholde kun fravær
+  w(19,'Mai',{
+    ukesaktuelt: u([], ''),
+    kjøkkenvakt:'Ingrid G, Ann Christin, David', trivselsvakt:'Ken, Thora',
+    fraværInfo:'Haldor ferie mandag og tirsdag.',
+    mandag:[e('Felles møte om digitalt læringsverktøy','felles','Avdelingsmøte')],
+    onsdag:[e('Tverrfaglig tema: Digitale verktøy og samarbeid på tvers','felles','Tverrfaglig tema')],
+    torsdag:[e('Avdelingsmøte og fagrapport modul 4','fov','Avdelingsmøte'), e('Teamarbeid og faglig samarbeid','no','Teamarbeid')]
+  });
+
+  // Uke 20: «Frist / påmelding» – offentlig trekk eksamen
+  w(20,'Mai',{
+    ukesaktuelt: u(['Frist / påmelding'], 'Offentlig trekk eksamen FOV kl. 09.00 tirsdag 13. mai.'),
+    kjøkkenvakt:'Signy, Beathe, Mustafa', trivselsvakt:'Magnar, Maria',
+    fraværInfo:'',
+    mandag:[e('Klasselærermøte: Forberedelse til tentamen modul 1–3','fov','Klasselærermøte'), e('Skriftlig vurdering og faglig samarbeid','no','Avdelingsmøte')],
+    onsdag:[e('Faglig samarbeid og gjennomgang av årsvurdering','felles','Samarbeidstid')],
+    torsdag:[e('HIMMELSPRETT – felles aktivitetsdag for ansatte','felles','Arrangement')]
+  });
+
+  // Uke 21: «Tentamen» + «Frist / påmelding»
+  w(21,'Mai',{
+    ukesaktuelt: u(['Tentamen','Frist / påmelding'], 'Eventuell engelskeksamen 20. mai, norskeksamen 21. mai. Frist fagrapport modul 4: 18. mai.'),
+    kjøkkenvakt:'Annette, Kristin, Wenche', trivselsvakt:'Beathe, Elena',
+    fraværInfo:'',
+    mandag:[e('Forberedelse til tentamen modul 1–3 og eksamen modul 4','fov','Avdelingsmøte'), e('Informasjon og eget arbeid','no','Teamarbeid')],
+    onsdag:[e('Planlegging av sommerfest og sommeravslutning','felles','Arrangement')],
+    torsdag:[e('Forberedelse til tentamen modul 1–3','fov','Avdelingsmøte'), e('Klasselærermøte: Vurdering og prøvemuntlig','no','Klasselærermøte')]
+  });
+
+  // Uke 22: «Tentamen» + «Prøver» – eksamen og norskprøver
+  w(22,'Mai',{
+    ukesaktuelt: u(['Tentamen','Prøver'], 'Eventuell matematikkeksamen 26. mai. Norskprøver tirsdag–torsdag. Noen lærere er i kommisjon.'),
+    kjøkkenvakt:'Mari TH, Elena, Anna', trivselsvakt:'Gro, Martin',
+    fraværInfo:'',
+    mandag:[e('PINSE – ingen planlagte møter (fridag)','felles','Avdelingsmøte')],
+    onsdag:[e('Klubbmøte','felles','Klubbmøte')],
+    torsdag:[e('Informasjon om eksamen, norskprøver og kommisjon','felles','Personalmøte')]
+  });
+
+  // ── Juni ─────────────────────────────────────────────────────────────────────
+  // Uke 23: «Tentamen» + «Frist / påmelding»
+  w(23,'Juni',{
+    ukesaktuelt: u(['Tentamen','Frist / påmelding'], 'Tentamen FOV modul 1–3. Frist standpunktkarakter 5. juni.'),
+    kjøkkenvakt:'Karl, Ken, Wanda', trivselsvakt:'June, David',
+    fraværInfo:'',
+    mandag:[e('Klasselærermøte og evaluering av norskprøver','fov','Klasselærermøte'), e('Kontaktlærers oppgaver og evaluering','no','Avdelingsmøte')],
+    onsdag:[e('NAVO-møte – samarbeid om overganger til arbeid og utdanning','felles','Arrangement')],
+    torsdag:[e('Faglig utvikling: KI i skolen kl. 14.15–15.30','felles','Felles utviklingsarbeid')]
+  });
+
+  // Uke 24: «Muntlig prøve» + «Frist / påmelding»
+  w(24,'Juni',{
+    ukesaktuelt: u(['Muntlig prøve','Frist / påmelding'], 'Muntlig eksamen FOV 8.–10. juni. Frist terminkarakter modul 1–3: 12. juni.'),
+    kjøkkenvakt:'Gro, Marianne, Martine', trivselsvakt:'Hege, Juliane',
+    fraværInfo:'',
+    mandag:[e('Vurdering og faglig oppsummering','fov','Avdelingsmøte'), e('Faglig samarbeid og evaluering av semesteret','no','Teamarbeid')],
+    onsdag:[e('Faglig samarbeid: Muntlig eksamen modul 4','felles','Samarbeidstid')],
+    torsdag:[e('Halv planleggingsdag 14.15–19.00: KI i skolen og faglig utvikling','felles','Arrangement')]
+  });
+
+  // Uke 25: «Arrangement for deltakere» + «Feiring» – avslutning av skoleåret
+  w(25,'Juni',{
+    ukesaktuelt: u(['Arrangement for deltakere','Feiring'], 'Sommerfest med deltakere fredag. Sommeravslutning for personalet torsdag kl. 13.30.'),
+    kjøkkenvakt:'Ingrid F, Inger L, Tone', trivselsvakt:'Kristin, Kristine',
+    fraværInfo:'',
+    mandag:[e('Deling av erfaringer og lagring i Teams','felles','Teamarbeid')],
+    onsdag:[e('Faglig samarbeid, rydding og ajourføring','felles','Samarbeidstid')],
+    torsdag:[e('Sommeravslutning for personalet kl. 13.30–15.30','felles','Personalmøte')]
+  });
+
+  const kjokkenPersons = ['Martin','Eli Ann','Luwam','Thora','Sebastian','Iren','Magnar','Kristine','Mari H',
+    'Katarzyna','Hege','Ingrid G','Ann Christin','David','Signy','Beathe','Mustafa','Annette',
+    'Kristin','Wenche','Mari TH','Elena','Anna','Karl','Ken','Wanda','Gro','Marianne','Martine',
+    'Ingrid F','Inger L','Tone','Maria','Margit','Åse Linn','Benny','Lena','Lill-Anita','Camilla',
+    'Fikret','Haldor','Linda','Knut','Ingrid S'];
+  const trivselPersons = ['Katarzyna','Åse Linn','Luwam','Wenche','Marianne','Margot','Inger Lill',
+    'Mari Høivik','Wanda','Ingrid G','Ken','Thora','Magnar','Maria','Beathe','Elena','Gro','Martin',
+    'June','David','Hege','Juliane','Kristin','Kristine','Annette','Sebastian','Fikret','Benny'];
+  return {name:'Semesterplan – Veileder', weeks, kjokkenPersons, trivselPersons};
+}
+
 // ═══════════════════════════════════════════════════════
 //  INIT
 // ═══════════════════════════════════════════════════════
 getData(); // init storage
 initCloudSync(); // enable shared Firestore storage when Firebase config is filled in
 window.addEventListener('beforeunload', flushPendingWeekSave);
-window.addEventListener('resize', updateStickyOffsets);
+window.addEventListener('resize', () => {
+  updateStickyOffsets();
+  refreshActiveMonthSoon();
+});
+window.addEventListener('scroll', scheduleActiveMonthUpdate, {passive:true});
+document.addEventListener('scroll', scheduleActiveMonthUpdate, {passive:true, capture:true});
 restoreSession();
 </script>
 </body>
